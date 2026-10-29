@@ -1,0 +1,72 @@
+[
+  {
+    "id": "alpaca_en_001",
+    "instruction": "Explain the importance of boiling drinking water in rural areas.",
+    "input": "",
+    "output": "Boiling drinking water is one of the most effective and affordable ways to kill harmful pathogens like bacteria, viruses, and parasites. In rural areas where water sources may be contaminated with agricultural runoff or sewage, boiling water for at least 1-3 minutes prevents waterborne diseases such as cholera, typhoid, and diarrhea, safeguarding community health.",
+    "category": "health_preventive"
+  },
+  {
+    "id": "alpaca_en_002",
+    "instruction": "What are three natural ways to manage mild high blood pressure?",
+    "input": "",
+    "output": "Three effective natural ways to manage mild high blood pressure include: 1) Reducing dietary sodium intake by consuming less processed salt and eating potassium-rich fruits like bananas and spinach; 2) Engaging in 30 minutes of moderate aerobic exercise daily like brisk walking; 3) Practicing stress-reduction techniques such as deep breathing, meditation, and ensuring 7-8 hours of quality sleep.",
+    "category": "health_cardiovascular"
+  },
+  {
+    "id": "alpaca_en_003",
+    "instruction": "How does drip irrigation help farmers conserve water?",
+    "input": "",
+    "output": "Drip irrigation delivers water and nutrients directly to the plant's root zone through a network of pipes, tubing, and emitters. This minimizes water loss from evaporation and surface runoff, saving up to 50-70% of water compared to traditional flood irrigation while improving crop yields and preventing weed growth.",
+    "category": "agriculture"
+  },
+  {
+    "id": "alpaca_en_004",
+    "instruction": "Explain the symptoms and immediate home care for heatstroke during peak summer.",
+    "input": "",
+    "output": "Symptoms of heatstroke include high body temperature (above 103°F/39.4°C), hot, red, dry or damp skin, rapid pulse, dizziness, nausea, and confusion. Immediate home care steps: Move the person to a cool, shaded area immediately; apply cool wet cloths or give a cool bath; fan air around them; give sips of ORS or cool water if conscious; and seek emergency medical assistance immediately.",
+    "category": "emergency_first_aid"
+  },
+  {
+    "id": "alpaca_en_005",
+    "instruction": "Summarize the primary benefits of breastfeeding for the newborn during the first six months.",
+    "input": "",
+    "output": "Exclusive breastfeeding for the first six months provides ideal nutrition tailored to the infant's growth, supplies vital antibodies (colostrum) that boost immunity against infections, reduces the risk of childhood asthma, allergies, and ear infections, promotes healthy weight gain, and fosters strong maternal-infant bonding.",
+    "category": "maternal_child_health"
+  },
+  {
+    "id": "alpaca_en_006",
+    "instruction": "What is the function of insulin in the human body?",
+    "input": "",
+    "output": "Insulin is a hormone produced by the beta cells of the pancreas. Its primary function is to regulate blood glucose levels by facilitating the uptake of glucose from the bloodstream into cells for energy or storage as glycogen in the liver and muscles. Without sufficient insulin, glucose accumulates in the blood, leading to diabetes.",
+    "category": "health_diabetes"
+  },
+  {
+    "id": "alpaca_en_007",
+    "instruction": "Describe how to prepare an Oral Rehydration Solution (ORS) at home when commercially packaged ORS is unavailable.",
+    "input": "",
+    "output": "To make home-made ORS: Clean hands thoroughly, take 1 liter of clean boiled and cooled drinking water in a clean vessel, add 6 level teaspoons (approx. 25g) of sugar, and add 1/2 level teaspoon (approx. 2.5g) of common salt. Stir well until completely dissolved. Taste the solution; it should not taste saltier than tears. Administer in small, frequent sips to prevent dehydration.",
+    "category": "emergency_first_aid"
+  },
+  {
+    "id": "alpaca_en_008",
+    "instruction": "What precautions should be taken to prevent mosquito breeding around residential areas?",
+    "input": "",
+    "output": "To prevent mosquito breeding: 1) Eliminate stagnant water by emptying and cleaning water coolers, flower pots, old tires, and open buckets weekly; 2) Keep overhead and ground water storage tanks tightly covered; 3) Clear blocked drains and gutters; 4) Use biological larvicides or introduce mosquito-eating fish (Gambusia) in open ponds; 5) Use mosquito nets and screen doors.",
+    "category": "health_preventive"
+  },
+  {
+    "id": "alpaca_en_009",
+    "instruction": "Write a short letter in simple terms requesting an agricultural loan from a local rural bank.",
+    "input": "",
+    "output": "To: The Branch Manager, Rural Development Bank\nSubject: Request for Kisan Agricultural Crop Loan\n\nRespected Sir/Madam,\nI am a farmer cultivating 3 acres of land in our local village. I kindly request a crop loan of Rs. 50,000 for purchasing high-yield seeds, organic fertilizers, and preparing the field for the upcoming Kharif season. I have attached my land ownership documents (Patta) and Aadhaar card for your verification. Kindly approve my application at the earliest.\n\nYours sincerely,\nFarmer Name",
+    "category": "civic_services"
+  },
+  {
+    "id": "alpaca_en_010",
+    "instruction": "Explain why pregnant women should regularly take Iron and Folic Acid (IFA) supplements.",
+    "input": "",
+    "output": "Pregnant women require increased blood volume to support fetal growth and placenta development. Iron supplements prevent maternal anemia, fatigue, and low birth weight in babies. Folic acid taken during early pregnancy is essential to prevent neural tube defects (serious birth defects of the brain and spine). Regular intake under clinical supervision ensures safe delivery and maternal health.",
+    "category": "maternal_child_health"
+  }
+]

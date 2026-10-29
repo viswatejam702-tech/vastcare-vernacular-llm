@@ -1,0 +1,109 @@
+[
+  {
+    "id": "2c9236949d9b4e0d8f3d27a19551f5b0",
+    "title": "5. Results Summary (results.md)",
+    "safe_title": "5_ Results Summary _results_md_",
+    "deviceType": "DESKTOP",
+    "code_local": "screens_code\\2c9236949d9b4e0d8f3d27a19551f5b0_5_ Results Summary _results_md_.md"
+  },
+  {
+    "id": "5d7bf12821274887b95dfd82dd20326d",
+    "title": "Telugu LLM: Mobile Assistant",
+    "safe_title": "Telugu LLM_ Mobile Assistant",
+    "deviceType": "MOBILE",
+    "screenshot_local": "images\\5d7bf12821274887b95dfd82dd20326d_Telugu LLM_ Mobile Assistant.png",
+    "code_local": "screens_code\\5d7bf12821274887b95dfd82dd20326d_Telugu LLM_ Mobile Assistant.html"
+  },
+  {
+    "id": "d5814f42ad8b48ea9a5e973d0020d8fd",
+    "title": "2. Training Script (QLoRA)",
+    "safe_title": "2_ Training Script _QLoRA_",
+    "deviceType": "DESKTOP",
+    "code_local": "screens_code\\d5814f42ad8b48ea9a5e973d0020d8fd_2_ Training Script _QLoRA_.txt"
+  },
+  {
+    "id": "efd626b9ec5744498f3cc49ef9024b06",
+    "title": "Telugu LLM: Benchmarking & Comparison",
+    "safe_title": "Telugu LLM_ Benchmarking _ Comparison",
+    "deviceType": "DESKTOP",
+    "screenshot_local": "images\\efd626b9ec5744498f3cc49ef9024b06_Telugu LLM_ Benchmarking _ Comparison.png",
+    "code_local": "screens_code\\efd626b9ec5744498f3cc49ef9024b06_Telugu LLM_ Benchmarking _ Comparison.html"
+  },
+  {
+    "id": "6d64cfd1597c4e12b30a443fbdee7f61",
+    "title": "Telugu LLM: Eval & Deployment",
+    "safe_title": "Telugu LLM_ Eval _ Deployment",
+    "deviceType": "DESKTOP",
+    "screenshot_local": "images\\6d64cfd1597c4e12b30a443fbdee7f61_Telugu LLM_ Eval _ Deployment.png",
+    "code_local": "screens_code\\6d64cfd1597c4e12b30a443fbdee7f61_Telugu LLM_ Eval _ Deployment.html"
+  },
+  {
+    "id": "34d9344601704120a3f955161c80db9e",
+    "title": "3. Evaluation Script",
+    "safe_title": "3_ Evaluation Script",
+    "deviceType": "DESKTOP",
+    "code_local": "screens_code\\34d9344601704120a3f955161c80db9e_3_ Evaluation Script.txt"
+  },
+  {
+    "id": "1403d87862f74998b3d935a62778c7c4",
+    "title": "Telugu LLM: Dataset Curation & Quality Control",
+    "safe_title": "Telugu LLM_ Dataset Curation _ Quality Control",
+    "deviceType": "DESKTOP",
+    "screenshot_local": "images\\1403d87862f74998b3d935a62778c7c4_Telugu LLM_ Dataset Curation _ Quality Control.png",
+    "code_local": "screens_code\\1403d87862f74998b3d935a62778c7c4_Telugu LLM_ Dataset Curation _ Quality Control.html"
+  },
+  {
+    "id": "b0ea38df6ccf43dfa6eadbfa4ab75359",
+    "title": "4. Quantization & Deployment Script",
+    "safe_title": "4_ Quantization _ Deployment Script",
+    "deviceType": "DESKTOP",
+    "code_local": "screens_code\\b0ea38df6ccf43dfa6eadbfa4ab75359_4_ Quantization _ Deployment Script.txt"
+  },
+  {
+    "id": "35f14a85fcb7495887b17835833013b2",
+    "title": "Telugu LLM: Model Explorer",
+    "safe_title": "Telugu LLM_ Model Explorer",
+    "deviceType": "DESKTOP",
+    "screenshot_local": "images\\35f14a85fcb7495887b17835833013b2_Telugu LLM_ Model Explorer.png",
+    "code_local": "screens_code\\35f14a85fcb7495887b17835833013b2_Telugu LLM_ Model Explorer.html"
+  },
+  {
+    "id": "8963c7416ca04661b0dc77ebcd6f7a03",
+    "title": "Telugu LLM: Model Registry",
+    "safe_title": "Telugu LLM_ Model Registry",
+    "deviceType": "DESKTOP",
+    "screenshot_local": "images\\8963c7416ca04661b0dc77ebcd6f7a03_Telugu LLM_ Model Registry.png",
+    "code_local": "screens_code\\8963c7416ca04661b0dc77ebcd6f7a03_Telugu LLM_ Model Registry.html"
+  },
+  {
+    "id": "10af65e774694f6dba9fee4563b5caad",
+    "title": "Telugu LLM: Project Overview",
+    "safe_title": "Telugu LLM_ Project Overview",
+    "deviceType": "DESKTOP",
+    "screenshot_local": "images\\10af65e774694f6dba9fee4563b5caad_Telugu LLM_ Project Overview.png",
+    "code_local": "screens_code\\10af65e774694f6dba9fee4563b5caad_Telugu LLM_ Project Overview.html"
+  },
+  {
+    "id": "3bfe15ba1bd54084b265dbee7fb24295",
+    "title": "Telugu LLM: Training Monitor",
+    "safe_title": "Telugu LLM_ Training Monitor",
+    "deviceType": "DESKTOP",
+    "screenshot_local": "images\\3bfe15ba1bd54084b265dbee7fb24295_Telugu LLM_ Training Monitor.png",
+    "code_local": "screens_code\\3bfe15ba1bd54084b265dbee7fb24295_Telugu LLM_ Training Monitor.html"
+  },
+  {
+    "id": "e72b0a639d534859b2d6059061189980",
+    "title": "Telugu LLM: Data Pipeline",
+    "safe_title": "Telugu LLM_ Data Pipeline",
+    "deviceType": "DESKTOP",
+    "screenshot_local": "images\\e72b0a639d534859b2d6059061189980_Telugu LLM_ Data Pipeline.png",
+    "code_local": "screens_code\\e72b0a639d534859b2d6059061189980_Telugu LLM_ Data Pipeline.html"
+  },
+  {
+    "id": "f866b1b3775848acb0bfec9df27ad24c",
+    "title": "1. Data Pipeline (Python)",
+    "safe_title": "1_ Data Pipeline _Python_",
+    "deviceType": "DESKTOP",
+    "code_local": "screens_code\\f866b1b3775848acb0bfec9df27ad24c_1_ Data Pipeline _Python_.txt"
+  }
+]

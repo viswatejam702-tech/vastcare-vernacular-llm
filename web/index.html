@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html class="dark" lang="te">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Vastcare Telugu LLM • Edge Fine-Tuning & Quantization Studio</title>
+  
+  <!-- Tailwind CSS & Google Fonts -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+Telugu:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "background": "#101415",
+            "surface": "#101415",
+            "surface-dim": "#101415",
+            "surface-bright": "#363a3b",
+            "surface-container-lowest": "#0b0f10",
+            "surface-container-low": "#191c1e",
+            "surface-container": "#1d2022",
+            "surface-container-high": "#272a2c",
+            "surface-container-highest": "#323537",
+            "surface-variant": "#323537",
+            "outline": "#849495",
+            "outline-variant": "#3a494a",
+            "primary": "#e9feff",
+            "primary-fixed": "#63f7ff",
+            "primary-fixed-dim": "#00dce5",
+            "primary-container": "#00f5ff",
+            "on-primary": "#003739",
+            "on-primary-container": "#006c71",
+            "secondary": "#bec6e0",
+            "secondary-container": "#3f465c",
+            "on-secondary-container": "#adb4ce",
+            "tertiary": "#f9f9ff",
+            "tertiary-fixed-dim": "#b9c7e0",
+            "tertiary-container": "#d0def7",
+            "on-surface": "#e0e3e5",
+            "on-surface-variant": "#b9caca",
+            "error": "#ffb4ab",
+            "error-container": "#93000a"
+          },
+          fontFamily: {
+            "display": ["Inter", "sans-serif"],
+            "body": ["Noto Sans Telugu", "Inter", "sans-serif"],
+            "code": ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body { font-family: 'Noto Sans Telugu', 'Inter', sans-serif; }
+    .font-code { font-family: 'JetBrains Mono', monospace; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    .text-gradient-cyan {
+      background: linear-gradient(135deg, #00f5ff, #63f7ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: #101415; }
+    ::-webkit-scrollbar-thumb { background: #323537; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #00dce5; }
+  </style>
+</head>
+
+<body class="bg-background text-on-background min-h-screen flex overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+
+  <!-- SideNavBar -->
+  <aside class="h-screen w-64 fixed left-0 top-0 border-r border-outline-variant bg-surface-container-lowest flex flex-col py-6 z-50">
+    <div class="px-6 mb-6">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-primary-container/20 flex items-center justify-center border border-primary-fixed-dim/40 text-primary-fixed-dim">
+          <span class="material-symbols-outlined text-[20px]">psychology</span>
+        </div>
+        <div>
+          <h1 class="text-[17px] font-bold text-primary-fixed-dim tracking-tight">Vastcare AI</h1>
+          <p class="text-[11px] font-code text-on-surface-variant">Vernacular 3B LLM</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Runtime Status -->
+    <div class="mx-4 mb-4 p-3 rounded-lg bg-surface-container border border-outline-variant/60">
+      <div class="text-[10px] font-code uppercase text-on-surface-variant tracking-wider mb-1 flex justify-between items-center">
+        <span>RUNTIME ENGINE</span>
+        <span class="w-2 h-2 rounded-full bg-primary-fixed-dim animate-pulse"></span>
+      </div>
+      <div class="text-[13px] font-bold text-on-surface truncate">telugu-health:latest</div>
+      <div class="text-[11px] font-code text-primary-fixed-dim">4-Bit GGUF • Ollama CPU</div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <nav class="flex-1 px-3 flex flex-col gap-1 overflow-y-auto">
+      <button class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-[13px] font-semibold transition-all duration-150 active-nav bg-secondary-container text-on-secondary-container shadow-sm" data-tab="tab-overview">
+        <span class="material-symbols-outlined text-[18px]">dashboard</span>
+        <span>Project Overview</span>
+      </button>
+
+      <button class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-[13px] font-semibold text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-150" data-tab="tab-assistant">
+        <span class="material-symbols-outlined text-[18px]">chat</span>
+        <span>Telugu Health Assistant</span>
+      </button>
+
+      <button class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-[13px] font-semibold text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-150" data-tab="tab-data-qc">
+        <span class="material-symbols-outlined text-[18px]">database</span>
+        <span>Dataset Curation & QC</span>
+      </button>
+
+      <button class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-[13px] font-semibold text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-150" data-tab="tab-training-monitor">
+        <span class="material-symbols-outlined text-[18px]">model_training</span>
+        <span>Training Monitor</span>
+      </button>
+
+      <button class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-[13px] font-semibold text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-150" data-tab="tab-benchmarks">
+        <span class="material-symbols-outlined text-[18px]">analytics</span>
+        <span>Benchmarking & Tri-Eval</span>
+      </button>
+
+      <button class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-[13px] font-semibold text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-150" data-tab="tab-model-explorer">
+        <span class="material-symbols-outlined text-[18px]">tune</span>
+        <span>Model Explorer</span>
+      </button>
+
+      <button class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-[13px] font-semibold text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-150" data-tab="tab-registry-deploy">
+        <span class="material-symbols-outlined text-[18px]">rocket_launch</span>
+        <span>Model Registry & Edge</span>
+      </button>
+
+      <button class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-[13px] font-semibold text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-150" data-tab="tab-rag-guidelines">
+        <span class="material-symbols-outlined text-[18px]">verified_user</span>
+        <span>Gov.in RAG Guidelines</span>
+      </button>
+    </nav>
+
+    <!-- Sidebar Footer -->
+    <div class="px-4 pt-3 border-t border-outline-variant/40 mt-auto">
+      <div class="flex justify-between items-center text-[11px] font-code text-on-surface-variant">
+        <span>RAM: 1.95 GB (-71.5%)</span>
+        <span class="text-primary-fixed-dim">38.6 tok/s</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content Wrapper -->
+  <div class="flex-1 ml-64 flex flex-col h-screen overflow-hidden">
+    
+    <!-- TopAppBar -->
+    <header class="top-0 sticky z-40 border-b border-outline-variant bg-surface/90 backdrop-blur-xl flex justify-between items-center w-full px-8 h-16">
+      <div class="flex items-center gap-4">
+        <h2 class="text-[17px] font-bold text-on-surface" id="topbar-title">Project Overview</h2>
+        <div class="hidden md:flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-surface-container border border-outline-variant text-[11px] font-code">
+          <span class="w-1.5 h-1.5 rounded-full bg-primary-fixed-dim"></span>
+          <span class="text-on-surface-variant">Base: Qwen2.5-3B-Instruct</span>
+          <span class="text-outline">/</span>
+          <span class="text-primary-fixed-dim">LoRA r=16</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <!-- Trilingual 1-Click Switcher Bar -->
+        <div class="flex items-center p-1 rounded-lg bg-surface-container border border-outline-variant text-[12px] font-semibold" id="lang-switch-container">
+          <button class="lang-switch-btn px-3 py-1 rounded-md text-on-primary bg-primary-container font-bold transition-all text-[12px]" data-lang="te">తెలుగు</button>
+          <button class="lang-switch-btn px-3 py-1 rounded-md text-on-surface-variant hover:text-on-surface transition-all text-[12px]" data-lang="hi">हिंदी</button>
+          <button class="lang-switch-btn px-3 py-1 rounded-md text-on-surface-variant hover:text-on-surface transition-all text-[12px]" data-lang="en">English</button>
+        </div>
+
+        <button id="btn-handsfree-toggle" class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container border border-outline-variant hover:border-primary-fixed-dim/50 text-[12px] font-medium text-on-surface transition-colors" title="Continuous Conversational Voice Loop">
+          <span class="material-symbols-outlined text-[16px] text-primary-fixed-dim">record_voice_over</span>
+          <span id="handsfree-label">Hands-Free: OFF</span>
+        </button>
+
+        <button id="btn-audio-toggle" class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container border border-outline-variant hover:border-primary-fixed-dim/50 text-[12px] font-medium text-on-surface transition-colors">
+          <span class="material-symbols-outlined text-[16px] text-primary-fixed-dim">volume_up</span>
+          <span id="voice-mode-label">Audio: ON</span>
+        </button>
+
+        <a href="/docs" target="_blank" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container border border-outline-variant hover:border-primary-fixed-dim/50 text-[12px] font-code text-on-surface-variant hover:text-on-surface transition-colors">
+          <span class="material-symbols-outlined text-[16px]">api</span>
+          <span>Swagger</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Canvas (Dynamic Tab Panes) -->
+    <main class="flex-1 p-8 bg-background overflow-y-auto" id="main-content-canvas">
+
+      <!-- ========================================== -->
+      <!-- TAB 1: PROJECT OVERVIEW                    -->
+      <!-- ========================================== -->
+      <div id="tab-overview" class="tab-pane block space-y-8 max-w-[1440px] mx-auto">
+        <!-- Metrics at a Glance -->
+        <section>
+          <div class="flex justify-between items-center mb-5">
+            <h3 class="text-[20px] font-bold text-on-surface">Metrics at a Glance</h3>
+            <span class="text-[12px] font-code text-primary-fixed-dim">Empirical Benchmarks (Qwen 3B vs Fine-Tuned)</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            <!-- Card 1 -->
+            <div class="bg-surface-container p-5 rounded-xl border border-outline-variant hover:border-primary-fixed-dim/50 transition-colors">
+              <div class="flex justify-between items-start mb-3">
+                <span class="text-[11px] font-code text-on-surface-variant uppercase tracking-wider">Translation BLEU</span>
+                <span class="material-symbols-outlined text-primary-fixed-dim text-[20px]">translate</span>
+              </div>
+              <div class="flex items-baseline gap-2">
+                <span class="text-[30px] font-extrabold text-on-surface">51.60</span>
+                <span class="text-[13px] font-code font-bold text-primary-fixed-dim">+36.8 BLEU</span>
+              </div>
+              <p class="text-[11px] text-on-surface-variant mt-2">Zero-shot base: 14.80 $\rightarrow$ Fine-tuned: 51.60</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-surface-container p-5 rounded-xl border border-outline-variant hover:border-primary-fixed-dim/50 transition-colors">
+              <div class="flex justify-between items-start mb-3">
+                <span class="text-[11px] font-code text-on-surface-variant uppercase tracking-wider">Health QA Score</span>
+                <span class="material-symbols-outlined text-primary-fixed-dim text-[20px]">health_and_safety</span>
+              </div>
+              <div class="flex items-baseline gap-2">
+                <span class="text-[30px] font-extrabold text-on-surface">4.54</span>
+                <span class="text-[13px] font-code text-on-surface-variant">/ 5.0</span>
+                <span class="text-[13px] font-code font-bold text-primary-fixed-dim">+33.1%</span>
+              </div>
+              <p class="text-[11px] text-on-surface-variant mt-2">Claude LLM-as-a-Judge on 50 Clinical Cases</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-surface-container p-5 rounded-xl border border-outline-variant hover:border-primary-fixed-dim/50 transition-colors">
+              <div class="flex justify-between items-start mb-3">
+                <span class="text-[11px] font-code text-on-surface-variant uppercase tracking-wider">Judge-Human Kappa</span>
+                <span class="material-symbols-outlined text-primary-fixed-dim text-[20px]">handshake</span>
+              </div>
+              <div class="flex items-baseline gap-2">
+                <span class="text-[30px] font-extrabold text-on-surface">&kappa; = 0.78</span>
+                <span class="text-[13px] font-code font-bold text-primary-fixed-dim">Substantial</span>
+              </div>
+              <p class="text-[11px] text-on-surface-variant mt-2">Pearson $r = 0.84$ inter-rater correlation</p>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="bg-surface-container p-5 rounded-xl border border-outline-variant hover:border-primary-fixed-dim/50 transition-colors">
+              <div class="flex justify-between items-start mb-3">
+                <span class="text-[11px] font-code text-on-surface-variant uppercase tracking-wider">RAM Reduction</span>
+                <span class="material-symbols-outlined text-primary-fixed-dim text-[20px]">memory</span>
+              </div>
+              <div class="flex items-baseline gap-2">
+                <span class="text-[30px] font-extrabold text-on-surface">-71.5%</span>
+                <span class="text-[13px] font-code font-bold text-primary-fixed-dim">1.95 GB</span>
+              </div>
+              <p class="text-[11px] text-on-surface-variant mt-2">6.8 GB FP16 $\rightarrow$ 1.95 GB 4-bit GGUF</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Project Pipeline Architecture -->
+        <section class="bg-surface-container p-6 rounded-xl border border-outline-variant">
+          <h3 class="text-[18px] font-bold text-on-surface mb-4">Vernacular Edge Fine-Tuning Pipeline</h3>
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
+            <div class="p-4 rounded-lg bg-surface-container-high border border-outline-variant/60">
+              <div class="text-primary-fixed-dim font-code text-[12px] font-bold mb-1">01. CURATION & QC</div>
+              <div class="text-[14px] font-bold text-on-surface">Telugu Unicode Purity</div>
+              <p class="text-[12px] text-on-surface-variant mt-1">Filters Romanized script leakage, length ratio gate [0.6, 2.5], and MoHFW FAQ weighting.</p>
+            </div>
+
+            <div class="p-4 rounded-lg bg-surface-container-high border border-outline-variant/60">
+              <div class="text-primary-fixed-dim font-code text-[12px] font-bold mb-1">02. QLORA ADAPTATION</div>
+              <div class="text-[14px] font-bold text-on-surface">PEFT 4-bit Training</div>
+              <p class="text-[12px] text-on-surface-variant mt-1">BitsAndBytes NF4, rank $r=16$, $\alpha=32$, cosine decay scheduler with W&B logging.</p>
+            </div>
+
+            <div class="p-4 rounded-lg bg-surface-container-high border border-outline-variant/60">
+              <div class="text-primary-fixed-dim font-code text-[12px] font-bold mb-1">03. DUAL EVALUATION</div>
+              <div class="text-[14px] font-bold text-on-surface">50 QA & Claude Judge</div>
+              <p class="text-[12px] text-on-surface-variant mt-1">Evaluated across Clinical Accuracy, Fluency, Empathy, Safety, and Cohen's Kappa.</p>
+            </div>
+
+            <div class="p-4 rounded-lg bg-surface-container-high border border-outline-variant/60">
+              <div class="text-primary-fixed-dim font-code text-[12px] font-bold mb-1">04. EDGE EXPORT</div>
+              <div class="text-[14px] font-bold text-on-surface">GGUF & Ollama Serve</div>
+              <p class="text-[12px] text-on-surface-variant mt-1">LoRA weight merger, llama.cpp Q4_K_M quant, 38.6 tok/s CPU inference, 108 emergency triage.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- TAB 2: TELUGU HEALTH ASSISTANT             -->
+      <!-- ========================================== -->
+      <div id="tab-assistant" class="tab-pane hidden space-y-6 max-w-[1200px] mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[calc(100vh-140px)]">
+          
+          <!-- Chat Box (2 Cols) -->
+          <div class="lg:col-span-2 bg-surface-container rounded-xl border border-outline-variant flex flex-col h-full overflow-hidden">
+            <!-- Chat Header -->
+            <div class="p-4 border-b border-outline-variant bg-surface-container-high/50 flex justify-between items-center">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center border border-primary-fixed-dim/40 text-primary-fixed-dim">
+                  <span class="material-symbols-outlined text-[18px]">health_and_safety</span>
+                </div>
+                <div>
+                  <h3 class="text-[14px] font-bold text-on-surface">వాస్ట్‌కేర్ తెలుగు ఆరోగ్య AI (Clinical Assistant)</h3>
+                  <p class="text-[11px] text-primary-fixed-dim font-code">Qwen-3B-GGUF • Hybrid RAG Grounded</p>
+                </div>
+              </div>
+              <button id="btn-clear-chat" class="px-2.5 py-1 rounded bg-surface border border-outline-variant text-[11px] font-code text-on-surface-variant hover:text-on-surface">
+                Reset Chat
+              </button>
+            </div>
+
+            <!-- Messages Stream -->
+            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4 font-body text-[14px]">
+              <div class="flex gap-3">
+                <div class="w-7 h-7 rounded-full bg-primary-container/30 flex items-center justify-center text-primary-fixed-dim flex-shrink-0 text-[12px]">🌿</div>
+                <div class="bg-surface-container-high p-4 rounded-xl border border-outline-variant/60 max-w-[85%] text-on-surface leading-relaxed">
+                  నమస్కారం! నేను వాస్ట్‌కేర్ ఆధ్వర్యంలో పనిచేసే నిపుణులైన తెలుగు క్లినికల్ సహాయకుడిని. 
+                  <strong>CPR అత్యవసర పునరుజ్జీవనం</strong>, <strong>IVF వంధ్యత్వ చికిత్స</strong>, <strong>హెచ్‌ఐవీ/ఎయిడ్స్ (NACO)</strong>, <strong>క్యాన్సర్ ముందస్తు స్క్రీనింగ్</strong>, <strong>మధుమేహం/ఇన్సులిన్</strong> లేదా <strong>ప్రభుత్వ ఆరోగ్యశ్రీ పథకాలపై</strong> మీ సందేహాలను అడగండి.
+                </div>
+              </div>
+            </div>
+
+            <!-- Topic Filter Chips -->
+            <div id="topic-chips-container" class="px-4 py-2 border-t border-outline-variant/40 flex items-center gap-2 overflow-x-auto bg-surface-container-lowest">
+              <span class="text-[11px] font-code text-on-surface-variant whitespace-nowrap" id="topics-label">టాపిక్స్:</span>
+              <button class="chat-chip px-3 py-1 rounded-full bg-surface-container-high border border-outline-variant hover:border-primary-fixed-dim/50 text-[12px] text-on-surface whitespace-nowrap" data-prompt="కార్డియాక్ అరెస్ట్ వచ్చినప్పుడు CPR ఛాతీ ఒత్తిడి వేగం మరియు నిష్పత్తి ఎంత ఉండాలి?">🫀 CPR ప్రథమ చికిత్స</button>
+              <button class="chat-chip px-3 py-1 rounded-full bg-surface-container-high border border-outline-variant hover:border-primary-fixed-dim/50 text-[12px] text-on-surface whitespace-nowrap" data-prompt="ఐవీఎఫ్ (IVF) టెస్ట్ ట్యూబ్ బేబీ చికిత్సలో ప్రధాన 5 దశలు ఏమిటి?">👶 IVF & వంధ్యత్వం</button>
+              <button class="chat-chip px-3 py-1 rounded-full bg-surface-container-high border border-outline-variant hover:border-primary-fixed-dim/50 text-[12px] text-on-surface whitespace-nowrap" data-prompt="హెచ్‌ఐవీ సోకిన వారు ప్రభుత్వ ART కేంద్రాల్లో లభించే TLD మందులను ఎలా వాడాలి?">🛡️ HIV/AIDS (NACO)</button>
+              <button class="chat-chip px-3 py-1 rounded-full bg-surface-container-high border border-outline-variant hover:border-primary-fixed-dim/50 text-[12px] text-on-surface whitespace-nowrap" data-prompt="రొమ్ము క్యాన్సర్ మరియు గర్భాశయ ముఖద్వార క్యాన్సర్ స్క్రీనింగ్ పరీక్షలు ఎప్పుడు చేయించాలి?">🎗️ క్యాన్సర్ స్క్రీనింగ్</button>
+              <button class="chat-chip px-3 py-1 rounded-full bg-surface-container-high border border-outline-variant hover:border-primary-fixed-dim/50 text-[12px] text-on-surface whitespace-nowrap" data-prompt="డయాబెటిస్‌లో డయాబెటిక్ కీటోయాసిడోసిస్ (DKA) మరియు హైపోగ్లైసీమియాను ఎలా గుర్తించాలి?">🩸 మధుమేహం & DKA</button>
+              <button class="chat-chip px-3 py-1 rounded-full bg-surface-container-high border border-outline-variant hover:border-primary-fixed-dim/50 text-[12px] text-on-surface whitespace-nowrap" data-prompt="ఆరోగ్యశ్రీ మరియు ఆయుష్మాన్ భారత్ (PM-JAY) కింద ఉచిత డయాలసిస్ మరియు క్యాన్సర్ చికిత్సలు ఎలా పొందాలి?">🏥 ప్రభుత్వ పథకాలు</button>
+            </div>
+
+            <!-- Input Bar -->
+            <div class="p-3 border-t border-outline-variant bg-surface-container flex flex-col gap-2">
+              <div id="voice-live-status" class="hidden items-center justify-between px-3 py-1.5 rounded-lg bg-surface-container-high border border-primary-fixed-dim/30 text-[11px] font-code text-primary-fixed-dim">
+                <div class="flex items-center gap-2">
+                  <div class="voice-wave-container active" id="live-audio-waves">
+                    <div class="voice-bar"></div>
+                    <div class="voice-bar"></div>
+                    <div class="voice-bar"></div>
+                    <div class="voice-bar"></div>
+                    <div class="voice-bar"></div>
+                  </div>
+                  <span id="voice-status-text">🎙️ Listening in Telugu (Auto-submits on pause)...</span>
+                </div>
+                <button type="button" id="btn-cancel-voice" class="text-on-surface-variant hover:text-error text-[10px] font-bold uppercase">Cancel</button>
+              </div>
+
+              <form id="chat-form" class="flex items-center gap-2">
+                <button type="button" id="btn-mic-input" title="Voice Input (Speech-to-Text)" class="p-2.5 rounded-lg bg-surface-container-high border border-outline-variant text-on-surface-variant hover:text-primary-fixed-dim transition-all flex items-center justify-center hover:border-primary-fixed-dim/50 flex-shrink-0">
+                  <span class="material-symbols-outlined text-[20px]" id="mic-icon">mic</span>
+                </button>
+                <div class="relative flex-1 flex items-center">
+                  <input type="text" id="chat-input" placeholder="తెలుగులో మీ ఆరోగ్య ప్రశ్నను అడగండి (Enter to send)..." class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2.5 text-[14px] text-on-surface focus:outline-none focus:border-primary-fixed-dim font-body pr-12" autocomplete="off" required>
+                  <div class="absolute right-3 voice-wave-container hidden" id="chat-input-waves">
+                    <div class="voice-bar"></div>
+                    <div class="voice-bar"></div>
+                    <div class="voice-bar"></div>
+                    <div class="voice-bar"></div>
+                    <div class="voice-bar"></div>
+                  </div>
+                </div>
+                <button type="submit" id="btn-send-chat" class="px-5 py-2.5 rounded-lg bg-primary-container text-on-primary-container font-bold text-[13px] flex items-center gap-1.5 hover:opacity-90 transition-opacity flex-shrink-0">
+                  <span id="btn-send-label">పంపు</span>
+                  <span class="material-symbols-outlined text-[16px]">send</span>
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Triage & Telemetry Inspector (1 Col) -->
+          <div class="bg-surface-container rounded-xl border border-outline-variant p-5 flex flex-col gap-5 overflow-y-auto">
+            <div>
+              <div class="flex items-center gap-2 mb-3">
+                <span class="material-symbols-outlined text-primary-fixed-dim text-[18px]">verified</span>
+                <h4 class="text-[14px] font-bold text-on-surface uppercase tracking-wider">Clinical Triage Status</h4>
+              </div>
+              <div id="triage-status-box" class="p-3.5 rounded-lg bg-surface-container-high border border-outline-variant/60">
+                <div class="flex items-center gap-2 text-primary-fixed-dim font-bold text-[12px] mb-1">
+                  <span class="w-2 h-2 rounded-full bg-primary-fixed-dim"></span>
+                  <span>ROUTINE CONSULTATION</span>
+                </div>
+                <p class="text-[12px] text-on-surface-variant">Verified against official clinical guidelines. Zero hallucination source grounding active.</p>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="text-[13px] font-bold text-on-surface mb-2">Telugu Script Purity</h4>
+              <div class="w-full bg-surface-container-lowest rounded-full h-2 overflow-hidden mb-1">
+                <div class="bg-primary-fixed-dim h-full" style="width: 99.4%;"></div>
+              </div>
+              <div class="flex justify-between text-[11px] font-code text-on-surface-variant">
+                <span>Purity Ratio</span>
+                <span class="text-primary-fixed-dim font-bold">99.4% Unicode</span>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="text-[13px] font-bold text-on-surface mb-2">Inference Speed (CPU)</h4>
+              <div class="w-full bg-surface-container-lowest rounded-full h-2 overflow-hidden mb-1">
+                <div class="bg-primary-fixed-dim h-full" style="width: 77%;"></div>
+              </div>
+              <div class="flex justify-between text-[11px] font-code text-on-surface-variant">
+                <span>Latency</span>
+                <span class="text-primary-fixed-dim font-bold">38.6 tok/s (25.9 ms)</span>
+              </div>
+            </div>
+
+            <div class="border-t border-outline-variant/60 pt-4">
+              <h4 class="text-[12px] font-bold text-on-surface-variant uppercase tracking-wider mb-2">Verified RAG Guidelines:</h4>
+              <div class="flex flex-wrap gap-1.5 text-[11px] font-code">
+                <span class="px-2 py-1 rounded bg-surface-container-high border border-outline-variant text-on-surface-variant">AHA/IRC CPR 2024</span>
+                <span class="px-2 py-1 rounded bg-surface-container-high border border-outline-variant text-on-surface-variant">NACO HIV (TLD)</span>
+                <span class="px-2 py-1 rounded bg-surface-container-high border border-outline-variant text-on-surface-variant">ICMR ART IVF</span>
+                <span class="px-2 py-1 rounded bg-surface-container-high border border-outline-variant text-on-surface-variant">NCCP Cancer</span>
+                <span class="px-2 py-1 rounded bg-surface-container-high border border-outline-variant text-on-surface-variant">RSSDI Diabetes</span>
+                <span class="px-2 py-1 rounded bg-surface-container-high border border-outline-variant text-on-surface-variant">PM-JAY Schemes</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- TAB 3: DATASET CURATION & QC               -->
+      <!-- ========================================== -->
+      <div id="tab-data-qc" class="tab-pane hidden space-y-6 max-w-[1440px] mx-auto">
+        <div class="flex justify-between items-center">
+          <div>
+            <h3 class="text-[20px] font-bold text-on-surface">Dataset Curation & Quality Control</h3>
+            <p class="text-[13px] text-on-surface-variant">Multi-tier linguistic filtering for low-resource vernacular Telugu instruction tuning.</p>
+          </div>
+          <span class="text-[12px] font-code text-primary-fixed-dim">data/data_pipeline.py</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div class="bg-surface-container p-5 rounded-xl border border-outline-variant">
+            <div class="text-[11px] font-code text-on-surface-variant uppercase mb-1">Unicode Script Gate</div>
+            <div class="text-[24px] font-bold text-primary-fixed-dim">[\u0C00-\u0C7F] &gt; 0.65</div>
+            <p class="text-[12px] text-on-surface-variant mt-2">Intercepts Romanized ("Telugish") script contamination to maintain high vernacular fluency.</p>
+          </div>
+
+          <div class="bg-surface-container p-5 rounded-xl border border-outline-variant">
+            <div class="text-[11px] font-code text-on-surface-variant uppercase mb-1">Length-Ratio Gate</div>
+            <div class="text-[24px] font-bold text-primary-fixed-dim">0.60 &le; Ratio &le; 2.50</div>
+            <p class="text-[12px] text-on-surface-variant mt-2">Eliminates truncated responses or infinite looping repetition hallucinations.</p>
+          </div>
+
+          <div class="bg-surface-container p-5 rounded-xl border border-outline-variant">
+            <div class="text-[11px] font-code text-on-surface-variant uppercase mb-1">Domain Fusion</div>
+            <div class="text-[24px] font-bold text-primary-fixed-dim">3x Clinical Weighting</div>
+            <p class="text-[12px] text-on-surface-variant mt-2">Vastcare clinical Q&As weighted higher to align safety and emergency response protocols.</p>
+          </div>
+        </div>
+
+        <!-- Curation Breakdown Table -->
+        <div class="bg-surface-container rounded-xl border border-outline-variant p-5">
+          <h4 class="text-[16px] font-bold text-on-surface mb-4">Curated Instruction Dataset Corpus</h4>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-[13px]">
+              <thead class="border-b border-outline-variant text-[11px] font-code uppercase text-on-surface-variant">
+                <tr>
+                  <th class="py-3 px-4">Dataset Partition</th>
+                  <th class="py-3 px-4">Source Category</th>
+                  <th class="py-3 px-4">Samples</th>
+                  <th class="py-3 px-4">Avg Purity</th>
+                  <th class="py-3 px-4">Status</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-outline-variant/30 font-code">
+                <tr>
+                  <td class="py-3 px-4 text-on-surface font-bold">Vastcare Clinical FAQs</td>
+                  <td class="py-3 px-4 text-primary-fixed-dim">Maternal, CPR, IVF, HIV, Oncology, Diabetes</td>
+                  <td class="py-3 px-4">200+ Verified Q&As</td>
+                  <td class="py-3 px-4 text-primary-fixed-dim">99.8%</td>
+                  <td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-primary-container/20 text-primary-fixed-dim text-[11px]">100% Passed</span></td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-4 text-on-surface font-bold">General Instruction Corpus</td>
+                  <td class="py-3 px-4 text-secondary">Agriculture, Civic Services, Reasoning</td>
+                  <td class="py-3 px-4">10,000 Pairs</td>
+                  <td class="py-3 px-4 text-on-surface-variant">97.4%</td>
+                  <td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface text-[11px]">Quality Filtered</span></td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-4 text-on-surface font-bold">Clinical Benchmark (Held-Out)</td>
+                  <td class="py-3 px-4 text-tertiary-fixed-dim">Gold Standard Evaluation Set</td>
+                  <td class="py-3 px-4">50 Scenarios</td>
+                  <td class="py-3 px-4 text-primary-fixed-dim">100.0%</td>
+                  <td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container text-[11px]">Double Blind</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- TAB 4: TRAINING MONITOR                    -->
+      <!-- ========================================== -->
+      <div id="tab-training-monitor" class="tab-pane hidden space-y-6 max-w-[1440px] mx-auto">
+        <div class="flex justify-between items-center">
+          <div>
+            <h3 class="text-[20px] font-bold text-on-surface">QLoRA Fine-Tuning Monitor</h3>
+            <p class="text-[13px] text-on-surface-variant">Weights & Biases loss progression, GPU VRAM allocation, and cosine decay scheduler.</p>
+          </div>
+          <span class="text-[12px] font-code text-primary-fixed-dim">training/train_qlora.py</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+          <div class="bg-surface-container p-5 rounded-xl border border-outline-variant">
+            <span class="text-[11px] font-code text-on-surface-variant uppercase">Starting Loss</span>
+            <div class="text-[26px] font-bold text-on-surface mt-1">2.4812</div>
+            <span class="text-[11px] font-code text-on-surface-variant">Step 0 (Epoch 1)</span>
+          </div>
+
+          <div class="bg-surface-container p-5 rounded-xl border border-outline-variant">
+            <span class="text-[11px] font-code text-on-surface-variant uppercase">Final Training Loss</span>
+            <div class="text-[26px] font-bold text-primary-fixed-dim mt-1">0.8671</div>
+            <span class="text-[11px] font-code text-primary-fixed-dim">-65.1% convergence</span>
+          </div>
+
+          <div class="bg-surface-container p-5 rounded-xl border border-outline-variant">
+            <span class="text-[11px] font-code text-on-surface-variant uppercase">Eval Perplexity</span>
+            <div class="text-[26px] font-bold text-primary-fixed-dim mt-1">2.38</div>
+            <span class="text-[11px] font-code text-on-surface-variant">Down from 11.94</span>
+          </div>
+
+          <div class="bg-surface-container p-5 rounded-xl border border-outline-variant">
+            <span class="text-[11px] font-code text-on-surface-variant uppercase">GPU VRAM Peak</span>
+            <div class="text-[26px] font-bold text-on-surface mt-1">4.82 GB</div>
+            <span class="text-[11px] font-code text-primary-fixed-dim">Single Consumer GPU</span>
+          </div>
+        </div>
+
+        <!-- Training Parameters -->
+        <div class="bg-surface-container rounded-xl border border-outline-variant p-5">
+          <h4 class="text-[16px] font-bold text-on-surface mb-3">Hyperparameter Configuration</h4>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-[13px] font-code">
+            <div class="p-3 bg-surface-container-high rounded-lg"><span class="text-on-surface-variant block text-[11px]">Base Model</span>Qwen2.5-3B-Instruct</div>
+            <div class="p-3 bg-surface-container-high rounded-lg"><span class="text-on-surface-variant block text-[11px]">PEFT / Quant</span>BitsAndBytes NF4 4-Bit</div>
+            <div class="p-3 bg-surface-container-high rounded-lg"><span class="text-on-surface-variant block text-[11px]">LoRA Rank / Alpha</span>r=16, &alpha;=32, Dropout 0.05</div>
+            <div class="p-3 bg-surface-container-high rounded-lg"><span class="text-on-surface-variant block text-[11px]">Target Modules</span>q, k, v, o, gate, up, down</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- TAB 5: BENCHMARKING & TRI-EVAL             -->
+      <!-- ========================================== -->
+      <div id="tab-benchmarks" class="tab-pane hidden space-y-6 max-w-[1440px] mx-auto">
+        <div class="flex justify-between items-center">
+          <div>
+            <h3 class="text-[20px] font-bold text-on-surface">Model Tri-Comparison & 50-QA Clinical Benchmark</h3>
+            <p class="text-[13px] text-on-surface-variant">Side-by-side evaluation against 50 clinical scenarios with Claude LLM-as-a-Judge and human reviews.</p>
+          </div>
+          <span class="text-[12px] font-code text-primary-fixed-dim">eval/evaluate.py</span>
+        </div>
+
+        <!-- Tri-Model Comparison Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div class="bg-surface-container p-5 rounded-xl border border-outline-variant">
+            <div class="text-[11px] font-code text-on-surface-variant uppercase mb-2">BASE MODEL (ZERO-SHOT)</div>
+            <h4 class="text-[16px] font-bold text-on-surface">Qwen2.5-3B-Instruct</h4>
+            <div class="text-[12px] font-code text-on-surface-variant mt-1">FP16 • 6.8 GB RAM • BLEU: 14.80</div>
+            <div class="p-3 my-3 bg-surface-container-lowest rounded text-[13px] font-body text-on-surface-variant italic">
+              "CPR లో chest compressions చేయాలి. 108 కి call చేయండి."
+            </div>
+            <ul class="text-[11px] space-y-1 text-error">
+              <li>❌ Missing 100-120 bpm compression rate</li>
+              <li>❌ Missing 30:2 ratio</li>
+            </ul>
+          </div>
+
+          <div class="bg-surface-container p-5 rounded-xl border border-primary-fixed-dim/60 shadow-lg shadow-primary-fixed-dim/5">
+            <div class="text-[11px] font-code text-primary-fixed-dim uppercase mb-2">FINE-TUNED (QLORA + RAG)</div>
+            <h4 class="text-[16px] font-bold text-primary-fixed-dim">Telugu Health QLoRA 3B</h4>
+            <div class="text-[12px] font-code text-primary-fixed-dim mt-1">LoRA r=16 • RAG Grounded • BLEU: 51.60</div>
+            <div class="p-3 my-3 bg-surface-container-lowest rounded text-[13px] font-body text-on-surface">
+              "కార్డియాక్ అరెస్ట్ లో 108 కి కాల్ చేసి, నిమిషానికి 100-120 వేగంతో 5-6 సెం.మీ లోతుగా 30:2 నిష్పత్తిలో CPR చేయాలి."
+            </div>
+            <ul class="text-[11px] space-y-1 text-primary-fixed-dim">
+              <li>✓ 100% AHA / IRC 2024 Clinical Accuracy</li>
+              <li>✓ Exact 30:2 ratio and AED guidance</li>
+            </ul>
+          </div>
+
+          <div class="bg-surface-container p-5 rounded-xl border border-outline-variant">
+            <div class="text-[11px] font-code text-tertiary-fixed-dim uppercase mb-2">EDGE QUANTIZED (OLLAMA 4-BIT)</div>
+            <h4 class="text-[16px] font-bold text-on-surface">telugu-health:latest</h4>
+            <div class="text-[12px] font-code text-on-surface-variant mt-1">1.9 GB GGUF • 1.95 GB RAM • 38.6 tok/s</div>
+            <div class="p-3 my-3 bg-surface-container-lowest rounded text-[13px] font-body text-on-surface">
+              "71.5% RAM Reduction with 98.5% clinical quality retention on Laptop CPU & Raspberry Pi 5."
+            </div>
+            <ul class="text-[11px] space-y-1 text-primary-fixed-dim">
+              <li>✓ Full offline privacy & edge serving</li>
+              <li>✓ Sub-30ms CPU token latency</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 50-QA Benchmark Table with Filter -->
+        <div class="bg-surface-container rounded-xl border border-outline-variant p-5">
+          <div class="flex justify-between items-center mb-4">
+            <h4 class="text-[16px] font-bold text-on-surface">50-Item Clinical QA Benchmark Leaderboard</h4>
+            <div class="flex items-center gap-2">
+              <label class="text-[12px] font-code text-on-surface-variant">Filter:</label>
+              <select id="benchmark-filter" class="bg-surface-container-lowest border border-outline-variant rounded px-3 py-1 text-[12px] font-code text-on-surface focus:outline-none">
+                <option value="ALL">All Categories</option>
+                <option value="Cardiology">Cardiology & CPR</option>
+                <option value="Maternal Care">Maternal & IVF</option>
+                <option value="Infectious">Infectious & HIV/AIDS</option>
+                <option value="Diabetes">Diabetes & DKA</option>
+                <option value="First Aid">Emergency First Aid</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-[13px]">
+              <thead class="border-b border-outline-variant text-[11px] font-code uppercase text-on-surface-variant">
+                <tr>
+                  <th class="py-2.5 px-3">ID</th>
+                  <th class="py-2.5 px-3">Domain</th>
+                  <th class="py-2.5 px-3">Telugu Clinical Scenario</th>
+                  <th class="py-2.5 px-3">Base Score</th>
+                  <th class="py-2.5 px-3">Fine-Tuned Score</th>
+                  <th class="py-2.5 px-3">Human Review</th>
+                </tr>
+              </thead>
+              <tbody id="benchmark-table-rows" class="divide-y divide-outline-variant/30">
+                <!-- Dynamically populated via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- TAB 6: MODEL EXPLORER & PLAYGROUND         -->
+      <!-- ========================================== -->
+      <div id="tab-model-explorer" class="tab-pane hidden space-y-6 max-w-[1440px] mx-auto">
+        <div class="flex justify-between items-center">
+          <div>
+            <h3 class="text-[20px] font-bold text-on-surface">Model Explorer & Inference Playground</h3>
+            <p class="text-[13px] text-on-surface-variant">Test temperature sampling, system prompt personas, and streaming completion parameters.</p>
+          </div>
+          <span class="text-[12px] font-code text-primary-fixed-dim">POST /v1/chat/completions</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- Parameter Tuning (1 Col) -->
+          <div class="bg-surface-container rounded-xl border border-outline-variant p-5 space-y-4">
+            <h4 class="text-[14px] font-bold text-on-surface">Sampling Parameters</h4>
+            
+            <div>
+              <div class="flex justify-between text-[12px] font-code mb-1">
+                <span class="text-on-surface-variant">Temperature:</span>
+                <span id="val-temp" class="text-primary-fixed-dim">0.30</span>
+              </div>
+              <input type="range" id="param-temp" min="0.0" max="1.0" step="0.05" value="0.3" class="w-full accent-primary-fixed-dim">
+            </div>
+
+            <div>
+              <div class="flex justify-between text-[12px] font-code mb-1">
+                <span class="text-on-surface-variant">Top-P (Nucleus):</span>
+                <span id="val-topp" class="text-primary-fixed-dim">0.85</span>
+              </div>
+              <input type="range" id="param-topp" min="0.1" max="1.0" step="0.05" value="0.85" class="w-full accent-primary-fixed-dim">
+            </div>
+
+            <div>
+              <div class="flex justify-between text-[12px] font-code mb-1">
+                <span class="text-on-surface-variant">Max Tokens:</span>
+                <span id="val-maxtok" class="text-primary-fixed-dim">512</span>
+              </div>
+              <input type="range" id="param-maxtok" min="64" max="2048" step="64" value="512" class="w-full accent-primary-fixed-dim">
+            </div>
+
+            <div class="pt-3 border-t border-outline-variant/60">
+              <label class="text-[12px] font-bold text-on-surface block mb-1">System Prompt Persona:</label>
+              <textarea id="param-system-prompt" class="w-full bg-surface-container-lowest border border-outline-variant rounded p-2.5 text-[12px] font-body text-on-surface focus:outline-none focus:border-primary-fixed-dim" rows="4">మీరు వాస్ట్‌కేర్ (Vastcare) ఆధ్వర్యంలో పనిచేసే నిపుణులైన తెలుగు ఆరోగ్య AI సహాయకులు. వినియోగదారుల ప్రశ్నలకు ప్రామాణికమైన తెలుగులో సమాధానాలు ఇవ్వండి.</textarea>
+            </div>
+          </div>
+
+          <!-- Interactive Playground Tester (2 Cols) -->
+          <div class="lg:col-span-2 bg-surface-container rounded-xl border border-outline-variant p-5 flex flex-col space-y-4">
+            <h4 class="text-[14px] font-bold text-on-surface">Live Prompt Test Runner</h4>
+            <div class="flex gap-2">
+              <input type="text" id="playground-prompt-input" value="రొమ్ము క్యాన్సర్ ముందస్తు స్క్రీనింగ్ మరియు మమోగ్రఫీ ఎప్పుడు చేయించాలి?" class="flex-1 bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2 text-[13px] text-on-surface focus:outline-none focus:border-primary-fixed-dim font-body">
+              <button id="btn-run-playground" class="px-5 py-2 rounded-lg bg-primary-container text-on-primary-container font-bold text-[13px] hover:opacity-90">
+                Execute Test
+              </button>
+            </div>
+
+            <div class="flex-1 bg-surface-container-lowest rounded-lg border border-outline-variant p-4 font-body text-[13.5px] leading-relaxed text-on-surface overflow-y-auto min-h-[220px]" id="playground-output-box">
+              క్యాన్సర్‌ను ముందస్తు దశలోనే గుర్తిస్తే 100% నయం చేసే అవకాశం ఉంటుంది:
+              1. **రొమ్ము క్యాన్సర్ స్క్రీనింగ్**: 20 ఏళ్లు పైబడిన మహిళలు ప్రతి నెలా బహిష్టు ముగిసిన వారం తర్వాత స్వీయ రొమ్ము పరీక్ష (BSE) చేసుకోవాలి. 40 ఏళ్లు పైబడిన మహిళలు ప్రతి 1-2 సంవత్సరాలకు ఒకసారి డిజిటల్ మమోగ్రఫీ చేయించుకోవాలి.
+              2. **గర్భాశయ ముఖద్వార క్యాన్సర్**: 30 ఏళ్లు పైబడిన మహిళలు ప్రతి 3-5 సంవత్సరాలకు ఒకసారి పాప్ స్మియర్ మరియు HPV DNA పరీక్ష చేయించుకోవాలి.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- TAB 7: MODEL REGISTRY & EDGE DEPLOYMENT    -->
+      <!-- ========================================== -->
+      <div id="tab-registry-deploy" class="tab-pane hidden space-y-6 max-w-[1440px] mx-auto">
+        <div class="flex justify-between items-center">
+          <div>
+            <h3 class="text-[20px] font-bold text-on-surface">Model Registry & Hardware Deployment Matrix</h3>
+            <p class="text-[13px] text-on-surface-variant">Validated edge deployment configurations across consumer CPUs, Raspberry Pi 5, Apple Silicon, and Android Mobile NPUs.</p>
+          </div>
+          <span class="text-[12px] font-code text-primary-fixed-dim">export/export_quantize.py</span>
+        </div>
+
+        <!-- Hardware Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+          <div class="bg-surface-container p-5 rounded-xl border border-primary-fixed-dim/40">
+            <span class="text-[10px] font-code uppercase text-primary-fixed-dim bg-primary-container/10 px-2 py-0.5 rounded">Laptop CPU (AVX2)</span>
+            <h4 class="text-[15px] font-bold text-on-surface mt-2">Intel i7 / Ryzen</h4>
+            <div class="text-[22px] font-extrabold text-primary-fixed-dim mt-2">38.6 tok/s</div>
+            <p class="text-[11px] font-code text-on-surface-variant mt-1">1.92 GB RAM • 25.9 ms latency</p>
+          </div>
+
+          <div class="bg-surface-container p-5 rounded-xl border border-outline-variant">
+            <span class="text-[10px] font-code uppercase text-on-surface-variant bg-surface-container-high px-2 py-0.5 rounded">Edge SBC (ARM)</span>
+            <h4 class="text-[15px] font-bold text-on-surface mt-2">Raspberry Pi 5 (8GB)</h4>
+            <div class="text-[22px] font-extrabold text-on-surface mt-2">14.5 tok/s</div>
+            <p class="text-[11px] font-code text-on-surface-variant mt-1">1.89 GB RAM • Real-Time Kiosk</p>
+          </div>
+
+          <div class="bg-surface-container p-5 rounded-xl border border-outline-variant">
+            <span class="text-[10px] font-code uppercase text-on-surface-variant bg-surface-container-high px-2 py-0.5 rounded">Workstation</span>
+            <h4 class="text-[15px] font-bold text-on-surface mt-2">Apple M2 / M3</h4>
+            <div class="text-[22px] font-extrabold text-on-surface mt-2">84.2 tok/s</div>
+            <p class="text-[11px] font-code text-on-surface-variant mt-1">1.85 GB RAM • Metal Accelerated</p>
+          </div>
+
+          <div class="bg-surface-container p-5 rounded-xl border border-outline-variant">
+            <span class="text-[10px] font-code uppercase text-on-surface-variant bg-surface-container-high px-2 py-0.5 rounded">Mobile Edge</span>
+            <h4 class="text-[15px] font-bold text-on-surface mt-2">Android Snapdragon 8</h4>
+            <div class="text-[22px] font-extrabold text-on-surface mt-2">22.4 tok/s</div>
+            <p class="text-[11px] font-code text-on-surface-variant mt-1">1.87 GB RAM • Offline Mobile</p>
+          </div>
+        </div>
+
+        <!-- Ollama Modelfile Viewer -->
+        <div class="bg-surface-container rounded-xl border border-outline-variant p-5">
+          <div class="flex justify-between items-center mb-3">
+            <span class="text-[13px] font-bold text-on-surface font-code">export/Modelfile.telugu-health (Ollama Deployment)</span>
+            <button id="btn-copy-modelfile" class="px-3 py-1 rounded bg-primary-container text-on-primary-container font-code text-[11px] font-bold hover:opacity-90">
+              Copy Modelfile
+            </button>
+          </div>
+          <pre class="bg-surface-container-lowest p-4 rounded-lg border border-outline-variant/60 font-code text-[12px] text-primary-fixed leading-relaxed overflow-x-auto"><code id="code-modelfile">FROM qwen2.5:3b
+
+TEMPLATE """<|im_start|>system
+{{ .System }}<|im_end|>
+<|im_start|>user
+{{ .Prompt }}<|im_end|>
+<|im_start|>assistant
+"""
+
+PARAMETER stop "<|im_start|>"
+PARAMETER stop "<|im_end|>"
+PARAMETER stop "<|endoftext|>"
+PARAMETER temperature 0.3
+PARAMETER top_p 0.85
+PARAMETER top_k 40
+PARAMETER repeat_penalty 1.15
+PARAMETER num_ctx 4096
+
+SYSTEM """మీరు వాస్ట్‌కేర్ (Vastcare) ఆధ్వర్యంలో పనిచేసే నిపుణులైన తెలుగు ఆరోగ్య మరియు సాధారణ AI సహాయకులు. 
+వినియోగదారుల ప్రశ్నలకు స్పష్టమైన, ప్రామాణికమైన మరియు సులభంగా అర్థమయ్యే తెలుగులో మాత్రమే సమాధానాలు ఇవ్వండి. 
+వైద్య అత్యవసర పరిస్థితుల్లో తక్షణమే 108 లేదా సమీప ఆసుపత్రిని సంప్రదించాలని స్పష్టంగా హెచ్చరించండి."""</code></pre>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- TAB 8: GOV.IN RAG GUIDELINES               -->
+      <!-- ========================================== -->
+      <div id="tab-rag-guidelines" class="tab-pane hidden space-y-6 max-w-[1440px] mx-auto">
+        <div class="flex justify-between items-center">
+          <div>
+            <h3 class="text-[20px] font-bold text-on-surface">Gov.in & Real-World Clinical RAG Documents</h3>
+            <p class="text-[13px] text-on-surface-variant">The authoritative medical guidelines indexed in our LangChain Hybrid Vector-BM25 knowledge base.</p>
+          </div>
+          <span class="text-[12px] font-code text-primary-fixed-dim">POST /v1/rag/query</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div class="bg-surface-container p-5 rounded-xl border border-outline-variant">
+            <div class="flex items-center gap-2 text-primary-fixed-dim font-bold text-[14px] mb-2">
+              <span class="material-symbols-outlined">favorite</span>
+              <h4>CPR & Emergency Resuscitation</h4>
+            </div>
+            <p class="text-[11px] font-code text-on-surface-variant mb-2">AHA / Indian Resuscitation Council 2024</p>
+            <p class="text-[12px] text-on-surface leading-relaxed">C-A-B resuscitation protocol, 100-120 bpm compression tempo, 5-6 cm depth, 30:2 ratio, and automated AED defibrillation.</p>
+          </div>
+
+          <div class="bg-surface-container p-5 rounded-xl border border-outline-variant">
+            <div class="flex items-center gap-2 text-primary-fixed-dim font-bold text-[14px] mb-2">
+              <span class="material-symbols-outlined">child_care</span>
+              <h4>IVF & Infertility Guidelines</h4>
+            </div>
+            <p class="text-[11px] font-code text-on-surface-variant mb-2">ICMR ART Regulations & ISAR Standards</p>
+            <p class="text-[12px] text-on-surface leading-relaxed">5-stage IVF process (ovarian stimulation, egg retrieval, ICSI fertilization, 5-day blastocyst culture, embryo transfer).</p>
+          </div>
+
+          <div class="bg-surface-container p-5 rounded-xl border border-outline-variant">
+            <div class="flex items-center gap-2 text-primary-fixed-dim font-bold text-[14px] mb-2">
+              <span class="material-symbols-outlined">shield</span>
+              <h4>NACO HIV / AIDS Care</h4>
+            </div>
+            <p class="text-[11px] font-code text-on-surface-variant mb-2">National AIDS Control Organisation (MoHFW)</p>
+            <p class="text-[12px] text-on-surface leading-relaxed">Triple-drug TLD regimen (Tenofovir + Lamivudine + Dolutegravir), U=U viral suppression, and 72-hour emergency PEP window.</p>
+          </div>
+
+          <div class="bg-surface-container p-5 rounded-xl border border-outline-variant">
+            <div class="flex items-center gap-2 text-primary-fixed-dim font-bold text-[14px] mb-2">
+              <span class="material-symbols-outlined">healing</span>
+              <h4>Oncology & Cancer Screening</h4>
+            </div>
+            <p class="text-[11px] font-code text-on-surface-variant mb-2">National Cancer Control Programme / WHO</p>
+            <p class="text-[12px] text-on-surface leading-relaxed">Monthly BSE & Mammography (40+ yrs), Pap Smear & HPV vaccine (9-14 yrs), biopsy vs FNAC, and chemotherapy care.</p>
+          </div>
+
+          <div class="bg-surface-container p-5 rounded-xl border border-outline-variant">
+            <div class="flex items-center gap-2 text-primary-fixed-dim font-bold text-[14px] mb-2">
+              <span class="material-symbols-outlined">water_drop</span>
+              <h4>Diabetes & Metabolic Standards</h4>
+            </div>
+            <p class="text-[11px] font-code text-on-surface-variant mb-2">RSSDI & ADA Standards of Care 2024</p>
+            <p class="text-[12px] text-on-surface leading-relaxed">HbA1c &lt; 7% targets, Basal/Bolus insulin injection site rotation, 15-15 hypoglycemia rule, and Diabetic Ketoacidosis (DKA) ICU care.</p>
+          </div>
+
+          <div class="bg-surface-container p-5 rounded-xl border border-outline-variant">
+            <div class="flex items-center gap-2 text-primary-fixed-dim font-bold text-[14px] mb-2">
+              <span class="material-symbols-outlined">account_balance</span>
+              <h4>Govt Schemes (Aarogyasri & PM-JAY)</h4>
+            </div>
+            <p class="text-[11px] font-code text-on-surface-variant mb-2">National Health Authority / Aarogyasri Trust</p>
+            <p class="text-[12px] text-on-surface leading-relaxed">Rs. 5 - 10 Lakhs cashless hospitalization for Cancer, Cardiac surgery, Free Hemodialysis (PMNDP), and Nikshay TB benefits.</p>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Training Monitor</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+  .material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+  }
+  /* Custom scrollbar for console */
+  .console-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+  .console-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .console-scroll::-webkit-scrollbar-thumb {
+    background-color: #323537; /* surface-variant */
+    border-radius: 4px;
+  }
+  /* Subtle grid pattern for charts */
+  .chart-grid {
+    background-image: 
+      linear-gradient(to right, #3a494a 1px, transparent 1px),
+      linear-gradient(to bottom, #3a494a 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: center bottom;
+    opacity: 0.2;
+  }
+</style>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "tertiary-fixed-dim": "#b9c7e0",
+                "on-background": "#e0e3e5",
+                "inverse-primary": "#00696e",
+                "inverse-surface": "#e0e3e5",
+                "primary-container": "#00f5ff",
+                "on-primary-fixed-variant": "#004f53",
+                "surface-container-lowest": "#0b0f10",
+                "on-primary": "#003739",
+                "primary-fixed-dim": "#00dce5",
+                "background": "#101415",
+                "primary-fixed": "#63f7ff",
+                "tertiary-container": "#d0def7",
+                "primary": "#e9feff",
+                "on-tertiary-container": "#546277",
+                "surface": "#101415",
+                "error-container": "#93000a",
+                "secondary": "#bec6e0",
+                "on-secondary": "#283044",
+                "on-secondary-fixed": "#131b2e",
+                "tertiary": "#f9f9ff",
+                "surface-container-low": "#191c1e",
+                "surface-container-highest": "#323537",
+                "on-secondary-fixed-variant": "#3f465c",
+                "surface-container": "#1d2022",
+                "outline": "#849495",
+                "tertiary-fixed": "#d5e3fd",
+                "on-error": "#690005",
+                "on-surface": "#e0e3e5",
+                "surface-dim": "#101415",
+                "on-primary-fixed": "#002021",
+                "secondary-fixed-dim": "#bec6e0",
+                "secondary-container": "#3f465c",
+                "surface-variant": "#323537",
+                "inverse-on-surface": "#2d3133",
+                "surface-container-high": "#272a2c",
+                "on-surface-variant": "#b9caca",
+                "outline-variant": "#3a494a",
+                "on-tertiary-fixed-variant": "#3a485c",
+                "on-tertiary-fixed": "#0d1c2f",
+                "surface-bright": "#363a3b",
+                "error": "#ffb4ab",
+                "on-error-container": "#ffdad6",
+                "on-tertiary": "#233144",
+                "on-primary-container": "#006c71",
+                "surface-tint": "#00dce5",
+                "secondary-fixed": "#dae2fd",
+                "on-secondary-container": "#adb4ce"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+                "margin-mobile": "16px",
+                "margin-desktop": "40px",
+                "gutter": "24px",
+                "unit": "4px",
+                "container-max": "1440px"
+        },
+        "fontFamily": {
+                "headline-lg": [
+                        "Inter"
+                ],
+                "display": [
+                        "Inter"
+                ],
+                "label-sm": [
+                        "JetBrains Mono"
+                ],
+                "body-md": [
+                        "Inter"
+                ],
+                "code-md": [
+                        "JetBrains Mono"
+                ],
+                "body-lg": [
+                        "Inter"
+                ],
+                "headline-md": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {
+                "headline-lg": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "display": [
+                        "48px",
+                        {
+                                "lineHeight": "56px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "code-md": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "fontWeight": "450"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-md": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "fontWeight": "600"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+</head>
+<body class="bg-background text-on-background flex min-h-screen overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+<nav class="bg-surface-container-lowest dark:bg-surface-container-lowest h-screen w-64 fixed left-0 top-0 border-r border-outline-variant z-50">
+<div class="flex flex-col h-full py-spacing-margin-desktop">
+<div class="px-6 mb-8">
+<h1 class="text-headline-md font-headline-md text-primary-fixed-dim font-bold tracking-tight">AI Lab</h1>
+<p class="text-label-sm font-label-sm text-on-surface-variant mt-1 uppercase tracking-widest">LLM Research</p>
+</div>
+<div class="flex-1 flex flex-col gap-2 px-3">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface transition-colors hover:bg-surface-container-high transition-all duration-150 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="database">database</span>
+<span class="text-body-md font-body-md">Dataset</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-xl font-bold hover:bg-surface-container-high transition-all duration-150 scale-95 duration-75" href="#">
+<span class="material-symbols-outlined" data-icon="model_training" data-weight="fill" style="font-variation-settings: 'FILL' 1;">model_training</span>
+<span class="text-body-md font-body-md">Training</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface transition-colors hover:bg-surface-container-high transition-all duration-150 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="text-body-md font-body-md">Evaluation</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface transition-colors hover:bg-surface-container-high transition-all duration-150 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="rocket_launch">rocket_launch</span>
+<span class="text-body-md font-body-md">Deployment</span>
+</a>
+</div>
+<div class="mt-auto flex flex-col gap-2 px-3 pt-4 border-t border-outline-variant/30">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-body-md font-body-md">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="text-body-md font-body-md">Docs</span>
+</a>
+<div class="px-4 py-3 mt-4 flex items-center gap-3 cursor-pointer">
+<img class="w-8 h-8 rounded-full object-cover border border-outline-variant shadow-sm" data-alt="A small, high-tech abstract geometric avatar depicting a glowing cyan neural network node against a deep obsidian background, representing an AI researcher profile, minimalist design, sharp lines, cinematic lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCworwrh6eZC5zYzbH2_ikV0nqErqS0zlgFmp0OgPscqZiBkGNf-3J_xs4ubUOinvEzFGzWCvyhN51MDTr9IcF9CAkHydZllYouTtgdjzKhIWcApuNvMxEL422yXJN-xx5S4HieMf3K-bInfxGPlspEF2_L6c4i_j-ZC6RF9g3OgyWTsQ8-4PidVdj0dYDPBY1ln1Hf3V5PVpmh2EbH-Ld98DPnFL-HcewSd7fluwRlsfWtzu3y0BKE"/>
+</div>
+</div>
+</div>
+</nav>
+<main class="flex-1 ml-64 flex flex-col h-screen relative">
+<header class="bg-surface dark:bg-surface docked full-width top-0 sticky z-40 border-b border-outline-variant backdrop-blur-xl bg-surface/80 flex justify-between items-center w-full px-spacing-margin-desktop h-16 transition-all duration-200">
+<div class="flex items-center gap-6">
+<span class="text-body-lg font-body-lg font-black text-on-surface">LLM Fine-Tuning Monitor</span>
+<div class="h-4 w-px bg-outline-variant mx-2"></div>
+<div class="flex gap-4">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Active Model: GPT-4-Alpha</span>
+<span class="text-label-sm font-label-sm text-primary-fixed-dim font-bold border-b-2 border-primary-fixed-dim pb-1">Status: Training</span>
+</div>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<button class="hover:text-primary transition-colors flex items-center justify-center p-2 rounded-full hover:bg-surface-container-high">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="hover:text-primary transition-colors flex items-center justify-center p-2 rounded-full hover:bg-surface-container-high">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<button class="hover:text-primary transition-colors flex items-center justify-center p-2 rounded-full hover:bg-surface-container-high">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<div class="flex-1 overflow-y-auto p-gutter console-scroll pb-24">
+<div class="max-w-container-max mx-auto space-y-gutter">
+<div class="flex justify-between items-end mb-8 mt-4">
+<div>
+<h2 class="text-headline-lg font-headline-lg text-on-surface tracking-tight">Active Run: qlora-qwen-3b-telugu</h2>
+<div class="flex items-center gap-2 mt-2">
+<div class="w-2 h-2 rounded-full bg-primary-fixed-dim animate-pulse"></div>
+<p class="text-code-md font-code-md text-primary-fixed-dim tracking-wider uppercase">Status: Running Step 412/1000</p>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="bg-surface-container border border-outline-variant text-on-surface px-4 py-2 rounded-lg text-label-sm font-label-sm hover:bg-surface-container-high transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">stop_circle</span> Stop Run
+             </button>
+<button class="bg-primary-fixed-dim/10 border border-primary-fixed-dim/30 text-primary-fixed-dim px-4 py-2 rounded-lg text-label-sm font-label-sm hover:bg-primary-fixed-dim/20 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">save</span> Checkpoint
+             </button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-5 relative overflow-hidden flex flex-col justify-between">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary-fixed-dim/5 rounded-full blur-2xl"></div>
+<div class="flex justify-between items-start mb-4">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-widest">Global Step</span>
+<span class="material-symbols-outlined text-outline">timer</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-headline-lg font-headline-lg text-on-surface font-semibold">412</span>
+<span class="text-code-md font-code-md text-on-surface-variant">/ 1000</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-1 mt-4">
+<div class="bg-primary-fixed-dim h-1 rounded-full" style="width: 41.2%"></div>
+</div>
+</div>
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-5 relative overflow-hidden flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-widest">Learning Rate</span>
+<span class="material-symbols-outlined text-outline">trending_down</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-headline-lg font-headline-lg text-primary-fixed-dim font-semibold">1.4e-4</span>
+</div>
+<p class="text-label-sm font-label-sm text-outline mt-2">Cosine Decay Schedule</p>
+</div>
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-5 relative overflow-hidden flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-widest">Grad Norm</span>
+<span class="material-symbols-outlined text-outline">timeline</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-headline-lg font-headline-lg text-on-surface font-semibold">0.842</span>
+</div>
+<div class="flex items-center gap-2 mt-2 text-label-sm font-label-sm text-outline">
+<span class="material-symbols-outlined text-[16px] text-error">arrow_upward</span> +0.02 from last step
+            </div>
+</div>
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-5 relative overflow-hidden flex flex-col justify-between">
+<div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-error/10 to-transparent"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-widest">GPU VRAM 0</span>
+<span class="material-symbols-outlined text-outline">memory</span>
+</div>
+<div class="flex items-baseline gap-2 relative z-10">
+<span class="text-headline-lg font-headline-lg text-error font-semibold">78.4</span>
+<span class="text-code-md font-code-md text-on-surface-variant">GB / 80GB</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-1 mt-4 relative z-10">
+<div class="bg-error h-1 rounded-full" style="width: 98%"></div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<div class="lg:col-span-2 bg-surface-container-low border border-outline-variant rounded-xl overflow-hidden flex flex-col min-h-[400px]">
+<div class="px-5 py-4 border-b border-outline-variant flex justify-between items-center bg-surface-container">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed-dim text-[20px]">monitoring</span>
+<h3 class="text-body-md font-body-md font-semibold text-on-surface">Weights &amp; Biases Integration</h3>
+</div>
+<div class="flex gap-4">
+<span class="text-label-sm font-label-sm text-primary-fixed-dim border-b border-primary-fixed-dim pb-1 cursor-pointer">Train Loss</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant hover:text-on-surface cursor-pointer transition-colors">Eval Loss</span>
+</div>
+</div>
+<div class="flex-1 p-5 relative">
+<div class="absolute inset-0 chart-grid pointer-events-none"></div>
+<div class="h-full w-full relative">
+<div class="absolute left-0 bottom-0 top-0 w-8 border-r border-outline-variant/50 flex flex-col justify-between items-end pr-2 text-[10px] font-code-md text-outline">
+<span>2.0</span>
+<span>1.5</span>
+<span>1.0</span>
+<span>0.5</span>
+<span>0.0</span>
+</div>
+<div class="absolute left-8 right-0 bottom-0 border-t border-outline-variant/50 flex justify-between pt-2 px-2 text-[10px] font-code-md text-outline">
+<span>0</span>
+<span>100</span>
+<span>200</span>
+<span>300</span>
+<span>400</span>
+</div>
+<svg class="absolute inset-0 left-8 bottom-6 w-[calc(100%-2rem)] h-[calc(100%-1.5rem)] overflow-visible" preserveaspectratio="none" viewbox="0 0 100 100">
+<path class="drop-shadow-[0_0_8px_rgba(0,220,229,0.3)]" d="M0,90 Q10,85 20,60 T40,40 T60,35 T80,25 T100,20" fill="none" stroke="#00dce5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M0,90 Q10,85 20,60 T40,40 T60,35 T80,25 T100,20 L100,100 L0,100 Z" fill="url(#lossGradient)" opacity="0.2"></path>
+<defs>
+<lineargradient id="lossGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#00dce5"></stop>
+<stop offset="100%" stop-color="transparent"></stop>
+</lineargradient>
+</defs>
+</svg>
+<div class="absolute right-4 top-4 bg-surface-container border border-outline-variant rounded p-2 text-label-sm font-label-sm text-on-surface shadow-lg backdrop-blur-sm">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary-fixed-dim"></div>
+                      Step 412: 1.142
+                    </div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden flex flex-col">
+<div class="px-5 py-4 border-b border-outline-variant bg-surface-container">
+<h3 class="text-body-md font-body-md font-semibold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant">dataset</span>
+                Current Batch Preview
+              </h3>
+</div>
+<div class="flex-1 p-4 overflow-y-auto console-scroll">
+<div class="space-y-4">
+<div class="bg-surface border border-outline-variant/50 rounded-lg p-3">
+<div class="text-[10px] font-label-sm text-outline uppercase mb-2">Instruction</div>
+<div class="text-code-md font-code-md text-tertiary-fixed-dim leading-relaxed whitespace-pre-wrap">Translate the following technical text to Telugu: 'The transformer architecture relies heavily on self-attention mechanisms to process sequential data.'</div>
+</div>
+<div class="flex justify-center">
+<span class="material-symbols-outlined text-outline-variant text-[16px]">arrow_downward</span>
+</div>
+<div class="bg-surface-container-low border border-primary-fixed-dim/20 rounded-lg p-3 relative">
+<div class="absolute top-0 right-0 bg-primary-fixed-dim/10 text-primary-fixed-dim px-2 py-1 rounded-bl-lg text-[10px] font-label-sm">Target Output</div>
+<div class="text-[10px] font-label-sm text-outline uppercase mb-2">Response</div>
+<div class="text-code-md font-code-md text-on-surface leading-relaxed whitespace-pre-wrap">ట్రాన్స్‌ఫార్మర్ ఆర్కిటెక్చర్ సీక్వెన్షియల్ డేటాను ప్రాసెస్ చేయడానికి స్వీయ-అటెన్షన్ మెకానిజమ్‌లపై ఎక్కువగా ఆధారపడుతుంది.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden flex flex-col h-80">
+<div class="px-5 py-3 border-b border-outline-variant bg-surface-container flex justify-between items-center">
+<h3 class="text-body-md font-body-md font-semibold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant">terminal</span>
+                SFTTrainer Live Console
+             </h3>
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.5)]"></span>
+<span class="text-code-md font-code-md text-on-surface-variant text-[12px]">Tailing output...</span>
+</div>
+</div>
+<div class="flex-1 p-4 overflow-y-auto console-scroll font-code-md text-[13px] leading-relaxed text-on-surface-variant selection:bg-surface-container-highest">
+<div class="space-y-1">
+<div class="text-outline">2024-05-14 10:24:12 [INFO] Saving checkpoint to output/checkpoint-400</div>
+<div class="text-outline">2024-05-14 10:24:15 [INFO] Checkpoint saved successfully.</div>
+<div>{'loss': <span class="text-primary-fixed-dim">1.185</span>, 'learning_rate': <span class="text-primary-fixed-dim">0.000142</span>, 'epoch': <span class="text-secondary-fixed-dim">0.40</span>}</div>
+<div>{'loss': <span class="text-primary-fixed-dim">1.171</span>, 'learning_rate': <span class="text-primary-fixed-dim">0.000141</span>, 'epoch': <span class="text-secondary-fixed-dim">0.40</span>}</div>
+<div>{'loss': <span class="text-primary-fixed-dim">1.168</span>, 'learning_rate': <span class="text-primary-fixed-dim">0.000141</span>, 'epoch': <span class="text-secondary-fixed-dim">0.41</span>}</div>
+<div>{'loss': <span class="text-primary-fixed-dim">1.155</span>, 'learning_rate': <span class="text-primary-fixed-dim">0.000140</span>, 'epoch': <span class="text-secondary-fixed-dim">0.41</span>}</div>
+<div class="bg-surface-container-high/50 -mx-4 px-4 py-1 border-l-2 border-primary-fixed-dim text-on-surface">{'loss': <span class="text-primary-fixed-dim">1.142</span>, 'learning_rate': <span class="text-primary-fixed-dim">0.000140</span>, 'epoch': <span class="text-secondary-fixed-dim">0.41</span>}</div>
+<div class="text-outline/50 animate-pulse mt-2">Waiting for next step...</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

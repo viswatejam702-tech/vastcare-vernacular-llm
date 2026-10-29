@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dataset Management &amp; Curation - Telugu LLM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed-dim": "#00dce5",
+                    "on-error": "#690005",
+                    "surface-container-low": "#191c1e",
+                    "background": "#101415",
+                    "on-secondary-fixed": "#131b2e",
+                    "tertiary-fixed": "#d5e3fd",
+                    "surface-container-highest": "#323537",
+                    "surface": "#101415",
+                    "primary-container": "#00f5ff",
+                    "surface-bright": "#363a3b",
+                    "on-tertiary": "#233144",
+                    "outline": "#849495",
+                    "on-surface-variant": "#b9caca",
+                    "on-tertiary-container": "#546277",
+                    "on-primary-fixed": "#002021",
+                    "surface-dim": "#101415",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "inverse-on-surface": "#2d3133",
+                    "secondary-fixed": "#dae2fd",
+                    "on-error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#004f53",
+                    "tertiary": "#f9f9ff",
+                    "error": "#ffb4ab",
+                    "primary": "#e9feff",
+                    "outline-variant": "#3a494a",
+                    "on-secondary-container": "#adb4ce",
+                    "surface-container-high": "#272a2c",
+                    "on-surface": "#e0e3e5",
+                    "on-primary": "#003739",
+                    "on-secondary": "#283044",
+                    "on-background": "#e0e3e5",
+                    "surface-tint": "#00dce5",
+                    "on-primary-container": "#006c71",
+                    "tertiary-container": "#d0def7",
+                    "surface-variant": "#323537",
+                    "surface-container": "#1d2022",
+                    "inverse-surface": "#e0e3e5",
+                    "error-container": "#93000a",
+                    "secondary-container": "#3f465c",
+                    "secondary": "#bec6e0",
+                    "tertiary-fixed-dim": "#b9c7e0",
+                    "primary-fixed": "#63f7ff",
+                    "inverse-primary": "#00696e",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "surface-container-lowest": "#0b0f10",
+                    "on-tertiary-fixed-variant": "#3a485c",
+                    "on-tertiary-fixed": "#0d1c2f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "unit": "4px",
+                    "gutter": "24px",
+                    "container-max": "1440px",
+                    "margin-desktop": "40px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display": ["Inter"],
+                    "label-sm": ["JetBrains Mono"],
+                    "code-md": ["JetBrains Mono"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "code-md": ["14px", {"lineHeight": "20px", "fontWeight": "450"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .grid-bg {
+            background-image: 
+                linear-gradient(to right, rgba(58, 73, 74, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(58, 73, 74, 0.1) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(58, 73, 74, 0.3);
+        }
+        .micro-glow:focus-within {
+            box-shadow: 0 0 0 2px rgba(0, 220, 229, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md grid-bg overflow-x-hidden">
+<!-- SideNavBar -->
+<nav class="h-screen w-64 fixed left-0 top-0 border-r border-outline-variant bg-surface-container-lowest z-50 flex flex-col h-full py-spacing-margin-desktop">
+<div class="px-6 mb-8">
+<h1 class="text-headline-md font-headline-md text-primary-fixed-dim font-bold tracking-tight flex items-center gap-2">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">dataset</span>
+                AI Lab
+            </h1>
+<p class="text-label-sm font-label-sm text-on-surface-variant mt-1 uppercase">LLM Research</p>
+</div>
+<div class="flex-1 overflow-y-auto px-2 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-xl font-bold transition-all duration-150 active:scale-95 duration-75" href="#">
+<span class="material-symbols-outlined">database</span>
+<span class="text-body-md font-body-md">Dataset</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-150 rounded-xl" href="#">
+<span class="material-symbols-outlined">model_training</span>
+<span class="text-body-md font-body-md">Training</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-150 rounded-xl" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-body-md font-body-md">Evaluation</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-150 rounded-xl" href="#">
+<span class="material-symbols-outlined">rocket_launch</span>
+<span class="text-body-md font-body-md">Deployment</span>
+</a>
+</div>
+<div class="px-2 mt-auto pt-4 border-t border-outline-variant/30 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-150 rounded-xl" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-body-md font-body-md">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-150 rounded-xl" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="text-body-md font-body-md">Docs</span>
+</a>
+<div class="px-4 py-4 mt-2 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A futuristic minimalist avatar placeholder featuring glowing blue geometric nodes connecting in a dark void. Highly technical, corporate modern aesthetic with cyan accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqupE5PLjNXb47Q1aRvEstbmWzVHteT2IiVBN0c6zDHsogy8YRvvbMifJpTZYWVYoBI0cOUU-Qo0nmxAS1tdp3RoNDocI85J2txEiQERsPxYdohhiuGn1gcpwwsFacBvXF5wK_HpiBZ3-R1Nijn3TUNJWvMR3Si5DP-1M30Ex-T2W77DKO9WYdZwk0W8tbHBF9GGW6J7gMyRMJHj4kFkixJy0LQ6ruEYyBVSMIOxqDYZCMkps4L05B"/>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-label-sm font-label-sm text-on-surface truncate">Researcher Profile</p>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="ml-64 flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="docked full-width top-0 sticky z-40 border-b border-outline-variant backdrop-blur-xl bg-surface/80 flex justify-between items-center w-full px-spacing-margin-desktop h-16">
+<div class="flex items-center gap-6">
+<span class="text-body-lg font-body-lg font-black text-on-surface">LLM Fine-Tuning Monitor</span>
+<nav class="hidden md:flex items-center gap-4">
+<span class="text-label-sm font-label-sm text-on-surface-variant bg-surface-container-high px-2 py-1 rounded border border-outline-variant/50">Active Model: GPT-4-Alpha</span>
+<span class="text-label-sm font-label-sm text-primary-fixed-dim bg-primary-fixed-dim/10 px-2 py-1 rounded border border-primary-fixed-dim/30 flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary-fixed-dim animate-pulse"></span>
+                        Status: Training
+                    </span>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative micro-glow">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="bg-surface-container-high border border-outline-variant text-on-surface text-sm rounded-full pl-9 pr-4 py-1.5 focus:outline-none focus:border-primary-fixed-dim w-64 transition-all bg-transparent font-code-md" placeholder="Search datasets..." type="text"/>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Dashboard Canvas -->
+<div class="p-gutter flex-1 max-w-container-max mx-auto w-full">
+<div class="mb-8 flex justify-between items-end">
+<div>
+<h2 class="text-headline-lg font-headline-lg text-on-surface mb-2">Dataset Curation</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Telugu Instruction Tuning Pipeline</p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 bg-surface-container-high text-on-surface border border-outline-variant rounded-lg font-label-sm text-label-sm hover:bg-surface-container-highest transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                        Export JSONL
+                    </button>
+<button class="px-4 py-2 bg-gradient-to-b from-primary-fixed-dim to-[#00a8af] text-on-primary-fixed rounded-lg font-label-sm text-label-sm hover:opacity-90 transition-opacity flex items-center gap-2 border border-primary-fixed-dim/50 shadow-[0_0_15px_rgba(0,220,229,0.2)]">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+                        Run Evaluation
+                    </button>
+</div>
+</div>
+<!-- Stats Overview Bento -->
+<div class="grid grid-cols-12 gap-gutter mb-gutter">
+<div class="col-span-12 lg:col-span-4 glass-panel rounded-xl p-6 flex flex-col justify-between">
+<div>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">data_object</span> Total Samples
+                        </p>
+<h3 class="text-display font-display text-primary-fixed-dim">1,200</h3>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant/30 flex justify-between items-center text-label-sm font-label-sm">
+<span class="text-on-surface-variant">Validated: 85%</span>
+<span class="text-error flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">warning</span> HITL: 15%</span>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-5 glass-panel rounded-xl p-6">
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider mb-4">Source Distribution</p>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-code-md font-code-md mb-1">
+<span class="text-on-surface">Alpaca-Translated</span>
+<span class="text-primary-fixed-dim">1,000 (83.3%)</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-1.5">
+<div class="bg-primary-fixed-dim h-1.5 rounded-full" style="width: 83.3%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-code-md font-code-md mb-1">
+<span class="text-on-surface">Health-Domain (Custom)</span>
+<span class="text-[#a855f7]">200 (16.7%)</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-1.5">
+<div class="bg-[#a855f7] h-1.5 rounded-full" style="width: 16.7%"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-3 glass-panel rounded-xl p-6 flex flex-col justify-center items-center text-center relative overflow-hidden">
+<div class="absolute inset-0 bg-primary-fixed-dim/5 blur-xl rounded-full translate-y-1/2 scale-150"></div>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider mb-2 relative z-10">Avg. Sentence Length</p>
+<h3 class="text-display font-display text-on-surface relative z-10 flex items-baseline justify-center gap-1">
+                        42 <span class="text-body-md font-body-md text-on-surface-variant">tokens</span>
+</h3>
+</div>
+</div>
+<!-- Main Curation Area -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Filters & Table (Left Col) -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-gutter">
+<!-- Filters -->
+<div class="glass-panel rounded-xl p-4 flex flex-wrap gap-4 items-center">
+<span class="material-symbols-outlined text-on-surface-variant">filter_list</span>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-primary-fixed-dim/10 text-primary-fixed-dim border border-primary-fixed-dim/30 rounded-full font-label-sm text-label-sm cursor-pointer hover:bg-primary-fixed-dim/20 transition-colors">All Sources</span>
+<span class="px-3 py-1 bg-surface-container-high text-on-surface-variant border border-outline-variant rounded-full font-label-sm text-label-sm cursor-pointer hover:bg-surface-container-highest transition-colors">Alpaca</span>
+<span class="px-3 py-1 bg-surface-container-high text-on-surface-variant border border-outline-variant rounded-full font-label-sm text-label-sm cursor-pointer hover:bg-surface-container-highest transition-colors">Health-Domain</span>
+</div>
+<div class="w-px h-6 bg-outline-variant mx-2"></div>
+<div class="flex items-center gap-2 flex-1">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Quality Threshold:</span>
+<input class="flex-1 accent-primary-fixed-dim h-1 bg-surface-container-highest rounded-lg appearance-none cursor-pointer" max="100" min="0" type="range" value="75"/>
+<span class="text-code-md font-code-md text-primary-fixed-dim">&gt;0.75</span>
+</div>
+</div>
+<!-- Queue Table -->
+<div class="glass-panel rounded-xl overflow-hidden flex-1 flex flex-col">
+<div class="px-6 py-4 border-b border-outline-variant/50 flex justify-between items-center bg-surface-container-lowest/50">
+<h3 class="text-body-lg font-body-lg text-on-surface font-semibold">Curation Queue</h3>
+<span class="text-label-sm font-label-sm bg-surface-container-high px-2 py-1 rounded text-on-surface-variant border border-outline-variant">Showing 1-5 of 180 (Needs Review)</span>
+</div>
+<div class="overflow-x-auto flex-1">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-lowest/30 border-b border-outline-variant/30 text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">
+<th class="p-4 font-medium w-16">ID</th>
+<th class="p-4 font-medium">Source (EN)</th>
+<th class="p-4 font-medium">Target (TE)</th>
+<th class="p-4 font-medium w-24">Score</th>
+<th class="p-4 font-medium w-24">Action</th>
+</tr>
+</thead>
+<tbody class="text-code-md font-code-md divide-y divide-outline-variant/20">
+<tr class="hover:bg-surface-container-highest/30 transition-colors cursor-pointer group">
+<td class="p-4 text-on-surface-variant">#1042</td>
+<td class="p-4 text-on-surface truncate max-w-[200px]" title="Explain the symptoms of a common cold.">Explain the symptoms of a common col...</td>
+<td class="p-4 text-on-surface truncate max-w-[200px]" title="సాధారణ జలుబు యొక్క లక్షణాలను వివరించండి.">సాధారణ జలుబు యొక్క లక్షణాలను...</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-[#10b981]"></div>
+<span class="text-on-surface">0.92</span>
+</div>
+</td>
+<td class="p-4"><button class="text-primary-fixed-dim hover:text-primary opacity-0 group-hover:opacity-100 transition-opacity"><span class="material-symbols-outlined text-[20px]">edit</span></button></td>
+</tr>
+<tr class="bg-error/5 hover:bg-error/10 transition-colors cursor-pointer border-l-2 border-error group">
+<td class="p-4 text-on-surface-variant">#1043</td>
+<td class="p-4 text-on-surface truncate max-w-[200px]" title="What are the side effects of taking aspirin?">What are the side effects of taking...</td>
+<td class="p-4 text-on-surface truncate max-w-[200px] text-error" title="ఆస్పిరిన్ తీసుకోవడం వల్ల కలిగే ప్రయోజనాలు ఏమిటి? (Mistranslation)">ఆస్పిరిన్ తీసుకోవడం వల్ల కలిగే...</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<span class="text-error font-bold">0.41</span>
+</div>
+</td>
+<td class="p-4"><button class="text-error hover:text-on-error-container transition-opacity"><span class="material-symbols-outlined text-[20px]">visibility</span></button></td>
+</tr>
+<tr class="hover:bg-surface-container-highest/30 transition-colors cursor-pointer group">
+<td class="p-4 text-on-surface-variant">#1044</td>
+<td class="p-4 text-on-surface truncate max-w-[200px]">Describe the process of photosynthesis.</td>
+<td class="p-4 text-on-surface truncate max-w-[200px]">కిరణజన్య సంయోగక్రియ ప్రక్రియను...</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-[#10b981]"></div>
+<span class="text-on-surface">0.88</span>
+</div>
+</td>
+<td class="p-4"><button class="text-primary-fixed-dim hover:text-primary opacity-0 group-hover:opacity-100 transition-opacity"><span class="material-symbols-outlined text-[20px]">edit</span></button></td>
+</tr>
+<tr class="hover:bg-surface-container-highest/30 transition-colors cursor-pointer group">
+<td class="p-4 text-on-surface-variant">#1045</td>
+<td class="p-4 text-on-surface truncate max-w-[200px]">Write a python script to sort an array.</td>
+<td class="p-4 text-on-surface truncate max-w-[200px]">ఒక శ్రేణిని క్రమబద్ధీకరించడానికి...</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-[#f59e0b]"></div>
+<span class="text-on-surface">0.76</span>
+</div>
+</td>
+<td class="p-4"><button class="text-primary-fixed-dim hover:text-primary opacity-0 group-hover:opacity-100 transition-opacity"><span class="material-symbols-outlined text-[20px]">edit</span></button></td>
+</tr>
+<tr class="hover:bg-surface-container-highest/30 transition-colors cursor-pointer group">
+<td class="p-4 text-on-surface-variant">#1046</td>
+<td class="p-4 text-on-surface truncate max-w-[200px]">How to cook biryani?</td>
+<td class="p-4 text-on-surface truncate max-w-[200px]">బిర్యానీ ఎలా వండాలి?</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-[#10b981]"></div>
+<span class="text-on-surface">0.95</span>
+</div>
+</td>
+<td class="p-4"><button class="text-primary-fixed-dim hover:text-primary opacity-0 group-hover:opacity-100 transition-opacity"><span class="material-symbols-outlined text-[20px]">edit</span></button></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Detail / HITL View (Right Col) -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-gutter">
+<div class="glass-panel rounded-xl flex-1 border-error/30 shadow-[0_0_20px_rgba(255,180,171,0.05)] relative overflow-hidden flex flex-col">
+<div class="absolute top-0 left-0 w-full h-1 bg-error"></div>
+<div class="p-6 border-b border-outline-variant/30">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="text-label-sm font-label-sm bg-error/10 text-error border border-error/20 px-2 py-0.5 rounded flex items-center gap-1 w-max mb-2">
+<span class="material-symbols-outlined text-[14px]">warning</span> HITL Review Required
+                                    </span>
+<h3 class="text-body-lg font-body-lg text-on-surface font-semibold">Sample #1043</h3>
+</div>
+<span class="text-code-md font-code-md text-error bg-surface-container p-2 rounded border border-outline-variant">Score: 0.41</span>
+</div>
+<div class="space-y-2 text-label-sm font-label-sm text-on-surface-variant">
+<p class="flex justify-between border-b border-outline-variant/20 pb-1"><span>Domain:</span> <span class="text-on-surface font-code-md">Health</span></p>
+<p class="flex justify-between border-b border-outline-variant/20 pb-1"><span>Length Ratio:</span> <span class="text-on-surface font-code-md">0.85 (Pass)</span></p>
+<p class="flex justify-between pb-1"><span>BLEU Score:</span> <span class="text-error font-code-md">0.12 (Fail)</span></p>
+</div>
+</div>
+<div class="p-6 space-y-6 flex-1 overflow-y-auto">
+<!-- Instruction -->
+<div>
+<label class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider mb-2 block">Source (English)</label>
+<div class="p-4 bg-surface-container rounded-lg border border-outline-variant/50 text-body-md font-body-md text-on-surface">
+                                    What are the side effects of taking aspirin?
+                                </div>
+</div>
+<!-- Target/Translation -->
+<div>
+<label class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider mb-2 flex justify-between items-center">
+<span>Target (Telugu)</span>
+<span class="text-error normal-case flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">error</span> Semantic Mismatch</span>
+</label>
+<textarea class="w-full p-4 bg-surface-container rounded-lg border border-error/50 text-body-md font-body-md text-on-surface focus:outline-none focus:border-error focus:ring-1 focus:ring-error resize-none h-24" spellcheck="false">ఆస్పిరిన్ తీసుకోవడం వల్ల కలిగే ప్రయోజనాలు ఏమిటి?</textarea>
+<p class="text-label-sm font-label-sm text-on-surface-variant mt-2 italic">Note: Model translated 'side effects' as 'benefits' (ప్రయోజనాలు).</p>
+</div>
+<!-- JSONL Preview -->
+<div>
+<label class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider mb-2 block flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">data_array</span> Data Schema Preview
+                                </label>
+<div class="p-4 bg-[#0b0f10] rounded-lg border border-outline-variant/50 text-code-md font-code-md text-[#b9caca] overflow-x-auto whitespace-pre">
+<span class="text-[#a855f7]">{</span>
+<span class="text-[#63f7ff]">"instruction"</span>: <span class="text-[#10b981]">"What are the side..."</span>,
+  <span class="text-[#63f7ff]">"input"</span>: <span class="text-[#10b981]">""</span>,
+  <span class="text-[#63f7ff]">"output"</span>: <span class="text-[#10b981]">"ఆస్పిరిన్ తీసుకోవడం..."</span>,
+  <span class="text-[#63f7ff]">"meta"</span>: <span class="text-[#a855f7]">{</span>
+<span class="text-[#63f7ff]">"source"</span>: <span class="text-[#10b981]">"health_qa_v1"</span>,
+    <span class="text-[#63f7ff]">"quality_flag"</span>: <span class="text-[#f59e0b]">true</span>
+<span class="text-[#a855f7]">}</span>
+<span class="text-[#a855f7]">}</span></div>
+</div>
+</div>
+<div class="p-6 border-t border-outline-variant/30 bg-surface-container-lowest mt-auto flex gap-3">
+<button class="flex-1 py-2.5 bg-surface-container-high text-on-surface border border-outline-variant rounded-lg font-label-sm text-label-sm hover:bg-surface-container-highest transition-colors">Discard Sample</button>
+<button class="flex-1 py-2.5 bg-gradient-to-b from-primary-fixed-dim to-[#00a8af] text-on-primary-fixed rounded-lg font-label-sm text-label-sm hover:opacity-90 transition-opacity font-bold">Save Correction</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

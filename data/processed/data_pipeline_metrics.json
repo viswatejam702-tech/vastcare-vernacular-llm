@@ -1,0 +1,16 @@
+{
+  "general_instructions_stats": {
+    "total_raw": 10,
+    "passed_filters": 10,
+    "rejected_filters": 0,
+    "avg_script_purity": 0.9982,
+    "avg_length_ratio": 0.8557
+  },
+  "vastcare_clinical_samples_unique": 12,
+  "vastcare_clinical_samples_weighted": 36,
+  "total_merged_samples": 46,
+  "train_samples_count": 40,
+  "val_samples_count": 6,
+  "train_file": "C:\\Users\\VISWA\\OneDrive\\Pictures\\Screenshots\\VTR\\vernacular-telugu-llm\\data\\processed\\train_telugu_merged.jsonl",
+  "val_file": "C:\\Users\\VISWA\\OneDrive\\Pictures\\Screenshots\\VTR\\vernacular-telugu-llm\\data\\processed\\val_telugu.jsonl"
+}

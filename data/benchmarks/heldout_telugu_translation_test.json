@@ -1,0 +1,92 @@
+[
+  {
+    "id": "trans_test_001",
+    "english_source": "Drinking clean boiled water prevents severe waterborne infections like cholera and typhoid.",
+    "telugu_reference": "కాచి చల్లార్చిన స్వచ్ఛమైన నీటిని తాగడం వల్ల కలరా మరియు టైఫాయిడ్ వంటి తీవ్రమైన నీటి ద్వారా వ్యాపించే ఇన్ఫెక్షన్లు నివారించబడతాయి.",
+    "domain": "preventive_health"
+  },
+  {
+    "id": "trans_test_002",
+    "english_source": "Farmers should wear protective masks and rubber gloves while spraying chemical pesticides in fields.",
+    "telugu_reference": "పొలాల్లో రసాయన పురుగుల మందులు పిచికారీ చేసేటప్పుడు రైతులు రక్షణ మాస్కులు మరియు రబ్బరు గ్లౌజులు తప్పక ధరించాలి.",
+    "domain": "occupational_safety"
+  },
+  {
+    "id": "trans_test_003",
+    "english_source": "Exclusive breastfeeding for the first six months provides essential antibodies that protect newborns from diarrhea and respiratory infections.",
+    "telugu_reference": "మొదటి ఆరు నెలలు కేవలం తల్లిపాలు మాత్రమే పట్టడం వల్ల నవజాత శిశువులకు డయేరియా మరియు శ్వాసకోశ ఇన్ఫెక్షన్ల నుండి రక్షణ కల్పించే ముఖ్యమైన యాంటీబాడీలు లభిస్తాయి.",
+    "domain": "maternal_pediatric"
+  },
+  {
+    "id": "trans_test_004",
+    "english_source": "Regular thirty minutes of brisk walking every day significantly reduces blood pressure and improves cardiovascular stamina.",
+    "telugu_reference": "ప్రతిరోజూ క్రమం తప్పకుండా 30 నిమిషాల వేగవంతమైన నడక రక్తపోటును గణనీయంగా తగ్గిస్తుంది మరియు గుండె సామర్థ్యాన్ని మెరుగుపరుస్తుంది.",
+    "domain": "cardiology_lifestyle"
+  },
+  {
+    "id": "trans_test_005",
+    "english_source": "In case of severe snakebite, immediately keep the affected limb immobilized and reach the nearest hospital for anti-venom injection.",
+    "telugu_reference": "తీవ్రమైన పాము కాటు వేసినప్పుడు, వెంటనే కాటు వేసిన అవయవాన్ని కదల్చకుండా ఉంచి, యాంటీ-వెనమ్ ఇంజెక్షన్ కోసం దగ్గరలోని ఆసుపత్రికి చేరాలి.",
+    "domain": "emergency_toxicology"
+  },
+  {
+    "id": "trans_test_006",
+    "english_source": "Drip irrigation delivers water directly to crop roots, preventing excessive evaporation and saving up to sixty percent of water.",
+    "telugu_reference": "బిందు సేద్యం నీటిని నేరుగా పంట వేర్లకే అందిస్తుంది, దీనివల్ల అధిక ఆవిరి కావడం నివారించబడి అరవై శాతం వరకు నీరు ఆదా అవుతుంది.",
+    "domain": "agriculture"
+  },
+  {
+    "id": "trans_test_007",
+    "english_source": "Ragi porridge is rich in natural calcium and iron, making it an excellent traditional food for strong bones.",
+    "telugu_reference": "రాగి జావ సహజ కాల్షియం మరియు ఐరన్‌తో సమృద్ధిగా ఉంటుంది, ఇది ఎముకల దృఢత్వానికి అద్భుతమైన సంప్రదాయ ఆహారం.",
+    "domain": "vernacular_nutrition"
+  },
+  {
+    "id": "trans_test_008",
+    "english_source": "Patients with high blood pressure must reduce salt intake and never stop taking their prescribed medications abruptly.",
+    "telugu_reference": "అధిక రక్తపోటు ఉన్న రోగులు ఉప్పు వాడకాన్ని తగ్గించాలి మరియు వైద్యులు సూచించిన మందులను అకస్మాత్తుగా ఎప్పుడూ ఆపకూడదు.",
+    "domain": "hypertension_management"
+  },
+  {
+    "id": "trans_test_009",
+    "english_source": "To prepare home-made ORS, dissolve six teaspoons of sugar and half a teaspoon of salt in one liter of boiled clean water.",
+    "telugu_reference": "ఇంట్లోనే ఓఆర్ఎస్ తయారు చేయడానికి, ఒక లీటరు కాచి చల్లార్చిన నీటిలో ఆరు చెంచాల పంచదార మరియు అర చెంచా ఉప్పును పూర్తిగా కరిగించాలి.",
+    "domain": "pediatric_first_aid"
+  },
+  {
+    "id": "trans_test_010",
+    "english_source": "When dengue fever is suspected, avoid painkiller tablets like aspirin and maintain constant oral fluid hydration.",
+    "telugu_reference": "డెంగ్యూ జ్వరం అనుమానించినప్పుడు, ఆస్పిరిన్ వంటి పెయిన్ కిల్లర్ మాత్రలను నివారించాలి మరియు నిరంతరం నోటి ద్వారా ద్రవపదార్థాలు తీసుకుంటూ ఉండాలి.",
+    "domain": "infectious_vector"
+  },
+  {
+    "id": "trans_test_011",
+    "english_source": "Early detection of breast lumps through monthly self-examination saves lives and prevents advanced stage cancer.",
+    "telugu_reference": "నెలవారీ స్వీయ పరీక్ష ద్వారా రొమ్ములోని గడ్డలను ముందస్తుగా గుర్తించడం ప్రాణాలను కాపాడుతుంది మరియు క్యాన్సర్ ముదిరిపోకుండా నివారిస్తుంది.",
+    "domain": "oncology_preventive"
+  },
+  {
+    "id": "trans_test_012",
+    "english_source": "Excessive intake of refined sugar and deep-fried snacks leads to insulin resistance and increases the risk of type 2 diabetes.",
+    "telugu_reference": "శుద్ధి చేసిన పంచదార మరియు నూనెలో వేపిన చిరుతిళ్లను ఎక్కువగా తీసుకోవడం వల్ల ఇన్సులిన్ నిరోధకత ఏర్పడి టైప్ 2 డయాబెటిస్ ప్రమాదం పెరుగుతుంది.",
+    "domain": "metabolic_health"
+  },
+  {
+    "id": "trans_test_013",
+    "english_source": "Always wash fresh vegetables thoroughly under clean running water before chopping and cooking.",
+    "telugu_reference": "తాజా కూరగాయలను తరగడానికి మరియు వండడానికి ముందు ఎల్లప్పుడూ శుభ్రమైన ప్రవహించే నీటి కింద బాగా కడగాలి.",
+    "domain": "food_safety"
+  },
+  {
+    "id": "trans_test_014",
+    "english_source": "Vaccinating children according to the government immunization schedule protects them against fatal childhood illnesses.",
+    "telugu_reference": "ప్రభుత్వ ఇమ్యునైజేషన్ షెడ్యూల్ ప్రకారం పిల్లలకు సకాలంలో టీకాలు వేయించడం ప్రాణాంతక బాల్య వ్యాధుల నుండి వారిని రక్షిస్తుంది.",
+    "domain": "pediatric_immunization"
+  },
+  {
+    "id": "trans_test_015",
+    "english_source": "Applying toothpaste or turmeric on deep fire burns creates infections and causes severe tissue damage.",
+    "telugu_reference": "తీవ్రమైన కాలిన గాయాలపై టూత్‌పేస్ట్ లేదా పసుపు రాయడం వల్ల ఇన్ఫెక్షన్లు ఏర్పడి కణజాలం తీవ్రంగా దెబ్బతింటుంది.",
+    "domain": "emergency_burns"
+  }
+]

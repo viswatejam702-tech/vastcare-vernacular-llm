@@ -1,0 +1,60 @@
+# QLoRA Fine-Tuning Configuration: Qwen2.5-3B-Instruct for Telugu Healthcare
+model:
+  base_model_name_or_path: "Qwen/Qwen2.5-3B-Instruct"
+  torch_dtype: "bfloat16"
+  trust_remote_code: true
+  use_cache: false
+
+quantization:
+  load_in_4bit: true
+  bnb_4bit_quant_type: "nf4"
+  bnb_4bit_use_double_quant: true
+  bnb_4bit_compute_dtype: "bfloat16"
+
+lora:
+  r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  bias: "none"
+  task_type: "CAUSAL_LM"
+  target_modules:
+    - "q_proj"
+    - "k_proj"
+    - "v_proj"
+    - "o_proj"
+    - "gate_proj"
+    - "up_proj"
+    - "down_proj"
+
+training:
+  output_dir: "./output/qwen_telugu_qlora_adapter"
+  num_train_epochs: 3
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  gradient_accumulation_steps: 4
+  learning_rate: 0.0002
+  lr_scheduler_type: "cosine"
+  warmup_ratio: 0.05
+  max_seq_length: 2048
+  weight_decay: 0.01
+  logging_steps: 10
+  eval_strategy: "steps"
+  eval_steps: 50
+  save_strategy: "steps"
+  save_steps: 50
+  save_total_limit: 2
+  fp16: false
+  bf16: true
+  gradient_checkpointing: true
+  optim: "paged_adamw_8bit"
+  seed: 42
+
+data:
+  train_file: "./data/processed/train_telugu_merged.jsonl"
+  val_file: "./data/processed/val_telugu.jsonl"
+  system_prompt: "మీరు వాస్ట్‌కేర్ (Vastcare) ఆధ్వర్యంలో పనిచేసే నిపుణులైన తెలుగు ఆరోగ్య మరియు సాధారణ AI సహాయకులు. వినియోగదారుల ప్రశ్నలకు స్పష్టమైన, ప్రామాణికమైన మరియు సులభంగా అర్థమయ్యే తెలుగులో మాత్రమే సమాధానాలు ఇవ్వండి."
+
+wandb:
+  project: "vernacular-telugu-llm"
+  run_name: "qwen2.5-3b-telugu-health-qlora"
+  mode: "offline" # options: online, offline, disabled

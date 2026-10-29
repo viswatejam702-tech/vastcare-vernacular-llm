@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vernacular-telugu-llm"
+version = "1.0.0"
+description = "Vernacular LLM Fine-Tuning, Healthcare Domain Adaptation & 4-Bit Edge Quantization for Telugu"
+authors = [{ name = "Vastcare AI & ML Research Team" }]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.2.0",
+    "transformers>=4.44.0",
+    "peft>=0.12.0",
+    "trl>=0.9.6",
+    "bitsandbytes>=0.43.0",
+    "accelerate>=0.33.0",
+    "datasets>=2.20.0",
+    "sacrebleu>=2.4.0",
+    "rouge-score>=0.1.2",
+    "scikit-learn>=1.4.0",
+    "wandb>=0.17.0",
+    "fastapi>=0.111.0",
+    "uvicorn>=0.30.0",
+    "pydantic>=2.7.0",
+    "pyyaml>=6.0.1",
+    "tqdm>=4.66.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "black>=24.0.0",
+    "ruff>=0.4.0"
+]
