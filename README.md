@@ -237,4 +237,4 @@ python -m unittest discover tests
 
 ## 📄 License & Attribution
 
-Developed by the **Vastcare AI & ML Research Team**. Open-sourced for vernacular AI research in Indian regional languages.
+Developed by the **M viswa teja reddy**. Open-sourced for vernacular AI research in Indian regional languages.
