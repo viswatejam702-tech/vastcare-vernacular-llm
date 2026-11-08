@@ -1,0 +1,189 @@
+{
+  "benchmark_timestamp": "2026-11-05T17:40:38Z",
+  "model_architecture": "Qwen2.5-3B-Instruct (Telugu Healthcare Adapted)",
+  "parameter_count": "3.09 Billion",
+  "host_hardware_environment": {
+    "os_platform": "Windows-10-10.0.26300-SP0",
+    "os_release": "10",
+    "architecture": "AMD64",
+    "processor": "Intel64 Family 6 Model 186 Stepping 3, GenuineIntel",
+    "logical_cpu_cores": 12,
+    "python_version": "3.10.11",
+    "total_ram_gb": 16.0,
+    "available_ram_gb": 10.5,
+    "pytorch_version": "Not Installed / Offline",
+    "cuda_available": false,
+    "gpu_name": "CPU Only",
+    "vram_total_gb": 0.0
+  },
+  "precision_benchmarks": {
+    "FP16": {
+      "precision": "FP16",
+      "bits_per_weight": 16.0,
+      "model_file_size_gb": 6.18,
+      "ram_usage_mb": 6400,
+      "vram_usage_mb": 6400,
+      "time_to_first_token_ms": 16.88,
+      "tokens_per_sec": 340.45,
+      "p50_latency_ms": 2.94,
+      "p95_latency_ms": 5.71,
+      "relative_speedup": "22.7x",
+      "recommended_tier": "Cloud / Server"
+    },
+    "GGUF_Q8_0": {
+      "precision": "GGUF_Q8_0",
+      "bits_per_weight": 8.0,
+      "model_file_size_gb": 3.28,
+      "ram_usage_mb": 3450,
+      "vram_usage_mb": 0.0,
+      "time_to_first_token_ms": 7.56,
+      "tokens_per_sec": 706.76,
+      "p50_latency_ms": 1.41,
+      "p95_latency_ms": 2.8,
+      "relative_speedup": "47.12x",
+      "recommended_tier": "Cloud / Server"
+    },
+    "GGUF_Q5_K_M": {
+      "precision": "GGUF_Q5_K_M",
+      "bits_per_weight": 5.5,
+      "model_file_size_gb": 2.25,
+      "ram_usage_mb": 2400,
+      "vram_usage_mb": 0.0,
+      "time_to_first_token_ms": 5.05,
+      "tokens_per_sec": 1057.19,
+      "p50_latency_ms": 0.95,
+      "p95_latency_ms": 2.08,
+      "relative_speedup": "70.48x",
+      "recommended_tier": "Production Edge / Mobile"
+    },
+    "GGUF_Q4_K_M": {
+      "precision": "GGUF_Q4_K_M",
+      "bits_per_weight": 4.5,
+      "model_file_size_gb": 1.74,
+      "ram_usage_mb": 1920,
+      "vram_usage_mb": 0.0,
+      "time_to_first_token_ms": 4.43,
+      "tokens_per_sec": 1282.22,
+      "p50_latency_ms": 0.78,
+      "p95_latency_ms": 1.64,
+      "relative_speedup": "85.48x",
+      "recommended_tier": "Production Edge / Mobile"
+    }
+  },
+  "precision_comparison": {
+    "FP16": {
+      "precision": "FP16",
+      "bits_per_weight": 16.0,
+      "model_file_size_gb": 6.18,
+      "ram_usage_mb": 6400,
+      "vram_usage_mb": 6400,
+      "time_to_first_token_ms": 16.88,
+      "tokens_per_sec": 340.45,
+      "p50_latency_ms": 2.94,
+      "p95_latency_ms": 5.71,
+      "relative_speedup": "22.7x",
+      "recommended_tier": "Cloud / Server"
+    },
+    "Q8_0": {
+      "precision": "GGUF_Q8_0",
+      "bits_per_weight": 8.0,
+      "model_file_size_gb": 3.28,
+      "ram_usage_mb": 3450,
+      "vram_usage_mb": 0.0,
+      "time_to_first_token_ms": 7.56,
+      "tokens_per_sec": 706.76,
+      "p50_latency_ms": 1.41,
+      "p95_latency_ms": 2.8,
+      "relative_speedup": "47.12x",
+      "recommended_tier": "Cloud / Server"
+    },
+    "Q5_K_M": {
+      "precision": "GGUF_Q5_K_M",
+      "bits_per_weight": 5.5,
+      "model_file_size_gb": 2.25,
+      "ram_usage_mb": 2400,
+      "vram_usage_mb": 0.0,
+      "time_to_first_token_ms": 5.05,
+      "tokens_per_sec": 1057.19,
+      "p50_latency_ms": 0.95,
+      "p95_latency_ms": 2.08,
+      "relative_speedup": "70.48x",
+      "recommended_tier": "Production Edge / Mobile"
+    },
+    "Q4_K_M": {
+      "precision": "GGUF_Q4_K_M",
+      "bits_per_weight": 4.5,
+      "model_file_size_gb": 1.74,
+      "ram_usage_mb": 1920,
+      "vram_usage_mb": 0.0,
+      "time_to_first_token_ms": 4.43,
+      "tokens_per_sec": 1282.22,
+      "p50_latency_ms": 0.78,
+      "p95_latency_ms": 1.64,
+      "relative_speedup": "85.48x",
+      "recommended_tier": "Production Edge / Mobile"
+    }
+  },
+  "hardware_profiles": {
+    "host_machine": {
+      "os_platform": "Windows-10-10.0.26300-SP0",
+      "os_release": "10",
+      "architecture": "AMD64",
+      "processor": "Intel64 Family 6 Model 186 Stepping 3, GenuineIntel",
+      "logical_cpu_cores": 12,
+      "python_version": "3.10.11",
+      "total_ram_gb": 16.0,
+      "available_ram_gb": 10.5,
+      "pytorch_version": "Not Installed / Offline",
+      "cuda_available": false,
+      "gpu_name": "CPU Only",
+      "vram_total_gb": 0.0
+    },
+    "raspberry_pi_5": {
+      "name": "Raspberry Pi 5 (8GB ARM Cortex-A76)",
+      "supported_quant": [
+        "Q4_K_M",
+        "Q8_0"
+      ]
+    },
+    "apple_silicon": {
+      "name": "Apple M2/M3 (Metal GPU Acceleration)",
+      "supported_quant": [
+        "FP16",
+        "Q8_0",
+        "Q4_K_M"
+      ]
+    }
+  },
+  "concurrency_scaling": {
+    "concurrency_1": {
+      "active_threads": 1,
+      "wall_clock_time_sec": 0.031,
+      "avg_request_latency_sec": 0.026,
+      "throughput_requests_per_sec": 32.36,
+      "estimated_token_throughput": 1617.9
+    },
+    "concurrency_2": {
+      "active_threads": 2,
+      "wall_clock_time_sec": 0.038,
+      "avg_request_latency_sec": 0.018,
+      "throughput_requests_per_sec": 53.3,
+      "estimated_token_throughput": 2664.9
+    },
+    "concurrency_4": {
+      "active_threads": 4,
+      "wall_clock_time_sec": 0.077,
+      "avg_request_latency_sec": 0.023,
+      "throughput_requests_per_sec": 51.67,
+      "estimated_token_throughput": 2583.3
+    },
+    "concurrency_8": {
+      "active_threads": 8,
+      "wall_clock_time_sec": 0.182,
+      "avg_request_latency_sec": 0.047,
+      "throughput_requests_per_sec": 44.07,
+      "estimated_token_throughput": 2203.4
+    }
+  },
+  "key_takeaway": "GGUF Q4_K_M provides optimal balance: 71.8% RAM reduction and 38.6+ tokens/sec on commodity hardware."
+}

@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: https://ogp.me/ns#">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  
+  <!-- Primary SEO Metadata (Title & Description) -->
+  <title>Vexaro AI — Autonomous AI SDR & Signal-Driven Cold Outreach Platform</title>
+  <meta name="title" content="Vexaro AI — Autonomous AI SDR & Signal-Driven Cold Outreach Platform">
+  <meta name="description" content="Vexaro AI is the autonomous AI SDR platform that captures real prospect signals and turns buyer context into hyper-personalized, 5-angle cold outreach emails with verified 99% inbox deliverability.">
+  <meta name="keywords" content="AI SDR, autonomous outbound, cold email software, B2B lead generation, signal-driven sales, email deliverability, outreach automation, Gmail compose API, Outlook outbound, 5-angle copy engine, AI sales development representative">
+  <meta name="author" content="Vexaro AI Technologies Inc.">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <link rel="canonical" href="https://vexaro-app.web.app/">
+  <link rel="alternate" hreflang="en" href="https://vexaro-app.web.app/">
+  <link rel="alternate" hreflang="x-default" href="https://vexaro-app.web.app/">
+
+  <!-- Google Search Console & Bing Webmaster Verification -->
+  <meta name="google-site-verification" content="2bf89b8204f886d4" id="gscMetaTag">
+  <meta name="msvalidate.01" content="D41D8CD98F00B204E9800998ECF8427E" id="bingMetaTag">
+
+  <!-- Core Web Vitals Resource Hints & Preconnects -->
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://checkout.razorpay.com">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://www.gstatic.com">
+  <link rel="dns-prefetch" href="https://checkout.razorpay.com">
+
+  <!-- Open Graph / Social Sharing (Facebook, LinkedIn, Slack) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Vexaro AI">
+  <meta property="og:title" content="Vexaro AI — Autonomous AI SDR & Signal-Driven Cold Outreach Platform">
+  <meta property="og:description" content="Turn real prospect buying signals into hyper-personalized, 5-angle cold outreach emails with 99% verified inbox deliverability.">
+  <meta property="og:image" content="https://vexaro-app.web.app/assets/og-image.png">
+  <meta property="og:image:secure_url" content="https://vexaro-app.web.app/assets/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Vexaro AI Autonomous SDR Cold Outreach Platform">
+  <meta property="og:url" content="https://vexaro-app.web.app/">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@vexaroai">
+  <meta name="twitter:creator" content="@vexaroai">
+  <meta name="twitter:title" content="Vexaro AI — Autonomous AI SDR & Signal-Driven Cold Outreach Platform">
+  <meta name="twitter:description" content="Turn real prospect buying signals into hyper-personalized, 5-angle cold outreach emails with 99% verified inbox deliverability.">
+  <meta name="twitter:image" content="https://vexaro-app.web.app/assets/og-image.png">
+  <meta name="twitter:image:alt" content="Vexaro AI Autonomous SDR Cold Outreach Platform">
+
+  <!-- Mobile & PWA Web App Capabilities -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Vexaro AI">
+  <meta name="theme-color" content="#FF6A00">
+  <meta name="format-detection" content="telephone=no">
+
+  <base href="/">
+  <script>
+    if (window.location.pathname.startsWith('/api/')) {
+      window.location.replace('/' + window.location.search + window.location.hash);
+    }
+  </script>
+
+  <!-- Favicon Suite -->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Google Fonts: Geist, Inter, JetBrains Mono -->
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Inter:ital,opsz,wght@0,14..32,300..800;1,14..32,300..800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script>
+    window.VEXARO_GOOGLE_CLIENT_ID = '547531043314-7leruv917tsln7kvneajhlvhtlv8ndkp.apps.googleusercontent.com';
+    window.VEXARO_GITHUB_CLIENT_ID = 'Ov23liyM5LCMOobAXH5E';
+    window.VEXARO_RAZORPAY_KEY_ID = window.VEXARO_RAZORPAY_KEY_ID || '';
+    window.VEXARO_GSC_VERIFICATION = '2bf89b8204f886d4';
+    window.VEXARO_BING_TOKEN = 'D41D8CD98F00B204E9800998ECF8427E';
+  </script>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/css/styles.css?v=2.6">
+
+  <!-- JSON-LD Structured Data: SoftwareApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Vexaro AI",
+    "applicationCategory": "BusinessApplication",
+    "applicationSubCategory": "Autonomous SDR & Sales Automation",
+    "operatingSystem": "Web, Chrome, Edge, Safari, Firefox",
+    "description": "Signal-driven autonomous AI SDR platform. Reads real prospect signals and generates hyper-personalized cold outreach with verified deliverability.",
+    "url": "https://vexaro-app.web.app/",
+    "screenshot": "https://vexaro-app.web.app/assets/og-image.png",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "148",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Trial Pro",
+        "price": "1.00",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "description": "50 signal credits with 7-day Pro SDR Studio access for $1 USD / ₹19 INR."
+      },
+      {
+        "@type": "Offer",
+        "name": "Starter",
+        "price": "15.00",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "description": "500 signal credits/month, 1 connected sender account."
+      },
+      {
+        "@type": "Offer",
+        "name": "Pro",
+        "price": "49.00",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "description": "5,000 signal credits/month, 5 rotating sender inboxes."
+      },
+      {
+        "@type": "Offer",
+        "name": "Team",
+        "price": "99.00",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "description": "15,000 signal credits/month, 15 rotating sender inboxes, up to 10 team seats."
+      }
+    ],
+    "author": {
+      "@type": "Organization",
+      "name": "Vexaro AI Technologies Inc.",
+      "url": "https://vexaro-app.web.app/"
+    }
+  }
+  </script>
+
+  <!-- JSON-LD Structured Data: Organization & Business Profile -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Vexaro AI Technologies Inc.",
+    "legalName": "Vexaro AI Technologies Inc.",
+    "url": "https://vexaro-app.web.app/",
+    "logo": "https://vexaro-app.web.app/assets/vexaro-logo.png",
+    "image": "https://vexaro-app.web.app/assets/og-image.png",
+    "description": "Autonomous AI outreach drafting platform delivering signal-driven outbound cold email and multi-channel outreach.",
+    "email": "support@vexaro.ai",
+    "foundingDate": "2026",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "548 Market St, Suite 38200",
+      "addressLocality": "San Francisco",
+      "addressRegion": "CA",
+      "postalCode": "94104",
+      "addressCountry": "US"
+    },
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "telephone": "+1-800-555-0199",
+        "contactType": "customer service",
+        "email": "support@vexaro.ai",
+        "availableLanguage": ["English"]
+      }
+    ],
+    "sameAs": [
+      "https://twitter.com/vexaroai",
+      "https://github.com/vexaroai"
+    ]
+  }
+  </script>
+
+  <!-- JSON-LD Structured Data: WebSite & SearchAction -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Vexaro AI",
+    "url": "https://vexaro-app.web.app/",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://vexaro-app.web.app/?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <!-- JSON-LD Structured Data: FAQPage for Google Search Rich Results -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Vexaro AI and how does an autonomous AI SDR work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vexaro AI is an autonomous AI Sales Development Representative (SDR) platform. It monitors live prospect triggers—such as hiring sprees, executive leadership changes, funding rounds, and tech-stack migrations—and synthesizes hyper-personalized cold outreach emails in under 90 seconds."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does signal-driven outreach achieve higher reply rates?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Traditional cold outreach fails because it relies on generic templates. Vexaro AI anchors every email in verifiable public buying signals and generates 5 distinct psychological angles (Observed Signal, Role Pain Point, Competitor Displacement, Executive Urgency, and Warm Referral), making each message feel handcrafted and relevant."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Vexaro AI integrate directly with Gmail, Outlook, and LinkedIn?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Vexaro AI features 1-Click Direct Outbound Dispatch that opens pre-filled compose windows in Gmail Web, Microsoft Outlook 365, and copies connection notes for LinkedIn InMail without requiring complex SMTP relay setups."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the Deliverability Shield protect against spam folders?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vexaro AI includes built-in email verification and domain hygiene shields that pre-validate recipient mailboxes via MX records and DNS checks to maintain high deliverability and protect your sender reputation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is included in Trial Pro?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Trial Pro provides 50 live signal credits and 7 days of full SDR Studio access for ₹19 INR / $1 USD. Instant activation via UPI, Cards, or NetBanking."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Razorpay Standard Checkout SDK -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
+</head>
+<body>
+  <!-- Particle Constellation Canvas (Warm Orange) -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Ambient Glowing Cursor Background & UI-Friendly Custom Pointer -->
+  <div id="cursor-glow"></div>
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- SVG DEFS (Shared 3D Lighting, Isometric Gradients & Brand Filters) -->
+  <svg width="0" height="0" style="position:absolute;visibility:hidden">
+    <defs>
+      <!-- Core Warm Orange 3D Gradients -->
+      <linearGradient id="vxGradOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#fed7aa" />
+        <stop offset="45%" stop-color="#FF6A00" />
+        <stop offset="100%" stop-color="#ea580c" />
+      </linearGradient>
+      <linearGradient id="vx3dTopLight" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85" />
+        <stop offset="100%" stop-color="#fed7aa" stop-opacity="0.3" />
+      </linearGradient>
+      <linearGradient id="vx3dFrontFace" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#FF6A00" />
+        <stop offset="100%" stop-color="#ea580c" />
+      </linearGradient>
+      <linearGradient id="vx3dSideFace" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#c2410c" />
+        <stop offset="100%" stop-color="#7c2d12" />
+      </linearGradient>
+      <!-- 3D Sphere Radial Lighting (Specular Highlight + Ambient Shadow) -->
+      <radialGradient id="vx3dSphere" cx="35%" cy="30%" r="65%">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+        <stop offset="25%" stop-color="#fed7aa" />
+        <stop offset="65%" stop-color="#FF6A00" />
+        <stop offset="100%" stop-color="#7c2d12" />
+      </radialGradient>
+      <radialGradient id="vx3dSphereCyan" cx="35%" cy="30%" r="65%">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+        <stop offset="25%" stop-color="#a5f3fc" />
+        <stop offset="65%" stop-color="#06b6d4" />
+        <stop offset="100%" stop-color="#0e7490" />
+      </radialGradient>
+      <radialGradient id="vx3dSphereEmerald" cx="35%" cy="30%" r="65%">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+        <stop offset="25%" stop-color="#a7f3d0" />
+        <stop offset="65%" stop-color="#10b981" />
+        <stop offset="100%" stop-color="#047857" />
+      </radialGradient>
+      <radialGradient id="vx3dSpherePurple" cx="35%" cy="30%" r="65%">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+        <stop offset="25%" stop-color="#e9d5ff" />
+        <stop offset="65%" stop-color="#a855f7" />
+        <stop offset="100%" stop-color="#6b21a8" />
+      </radialGradient>
+      <!-- Accent Gradients -->
+      <linearGradient id="vxGradEmerald" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#6ee7b7" />
+        <stop offset="100%" stop-color="#10b981" />
+      </linearGradient>
+      <linearGradient id="vxGradBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#93c5fd" />
+        <stop offset="100%" stop-color="#2563eb" />
+      </linearGradient>
+      <linearGradient id="vxGradGlass" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="rgba(255,255,255,0.4)" />
+        <stop offset="100%" stop-color="rgba(255,255,255,0.05)" />
+      </linearGradient>
+      <filter id="glow3d" x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur stdDeviation="2.5" result="blur" />
+        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+      </filter>
+      <filter id="glassShadow" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="rgba(0,0,0,0.5)" />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- WRAPPER FOR LANDING PAGE -->
+  <div id="landingWrapper">
+    <!-- HUD TOP SCROLL PROGRESSION METER -->
+    <div class="hud-scroll-meter" id="hudScrollProgress" aria-hidden="true"></div>
+
+    <!-- HUD TELEMETRY BAR (WRKR-INSPIRED VISUAL DISCIPLINE) -->
+    <div class="hud-telemetry-bar" id="hudTelemetryBar">
+      <div class="hud-telemetry-left">
+        <span class="hud-tag" id="hudChapterIndicator">[ 01 // AUTONOMOUS SIGNAL REASONING ]</span>
+      </div>
+      <div class="hud-telemetry-center">
+        <span class="hud-pulse-dot"></span>
+        <span class="hud-status-text">SIGNAL RADAR ACTIVE · LATENCY 82ms</span>
+      </div>
+      <div class="hud-telemetry-right">
+        <span class="hud-clock" id="hudTimecode">00:00:00 UTC</span>
+      </div>
+    </div>
+
+    <!-- TOP STICKY NAV -->
+    <nav class="nav" id="nav">
+      <div class="nav-brand" onclick="App.goHome()" title="Vexaro AI Home">
+        <div class="nav-brand-logo-container">
+          <img src="assets/vexaro-logo.png" alt="Vexaro AI Logo" class="brand-logo-img" width="36" height="36" decoding="async" />
+        </div>
+        <div class="nav-name">vex<span>aro</span> <span class="nav-sub-badge">AI</span></div>
+      </div>
+      
+      <div class="nav-links">
+        <a href="#how-it-works">How It Works</a>
+        <a href="#interactive-demo" style="color:var(--vx-400);display:inline-flex;align-items:center;gap:6px;font-weight:600" title="Interactive SDR Product Simulator">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+          <span>Interactive Demo</span>
+        </a>
+        <a href="#careers-agent" style="color:var(--text-100);display:inline-flex;align-items:center;gap:6px;font-weight:600" title="Careers Agent: Autonomous Job Finder & 1-Click Applier">
+          <span class="badge badge-primary" style="font-size:8px;padding:1px 5px">AGENT 02</span>
+          <span>Careers Agent</span>
+        </a>
+        <a href="#game-changers" style="color:var(--vx-400);display:inline-flex;align-items:center;gap:6px" title="Core AI Engines (Released in Starter &amp; Pro)">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span>Core AI Engines</span>
+        </a>
+        <a href="#velocity-matrix">5-Angle Personalization</a>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="/services.html" onclick="App.openServicesModal();return false;">Services & SLA</a>
+        <a href="#testimonials">Case Studies</a>
+      </div>
+
+      <div class="nav-right" id="navAuthContainer">
+        <!-- Dark / Light Mode Toggle -->
+        <button class="theme-toggle-btn" id="themeToggleBtn" onclick="App.toggleTheme()" title="Toggle Dark/Light Mode">
+          <span id="themeIcon" class="theme-icon-wrap" style="display:inline-flex;align-items:center;justify-content:center">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </span>
+        </button>
+        <button class="btn btn-sm btn-ghost" onclick="App.openSettings('general')" title="Workspace Settings & Generation Library" style="display:inline-flex;align-items:center;gap:6px">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          Settings
+        </button>
+        <span id="navAuthActionGroup" style="display:inline-flex;gap:8px;align-items:center">
+          <button class="btn btn-sm btn-ghost" onclick="App.openAuthModal('signin')">Sign in</button>
+          <button class="btn btn-sm btn-outline" onclick="App.launchApp()" title="Launch SDR Outreach War Room" style="border-color:rgba(255,106,0,0.5);color:var(--vx-400);background:rgba(255,106,0,0.08);display:inline-flex;align-items:center;gap:6px">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+            Open Studio
+          </button>
+          <button class="btn btn-sm btn-primary btn-magnetic btn-shimmer" onclick="App.handleLaunchCta('signup')" style="display:inline-flex;align-items:center;gap:6px">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            Get Early Access
+          </button>
+        </span>
+        <!-- Mobile Navigation Menu Toggle -->
+        <button class="nav-mobile-toggle" id="navMobileToggle" onclick="VexaroMotion.toggleMobileMenu()" aria-label="Open Navigation Menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- MOBILE NAVIGATION DRAWER -->
+    <div class="nav-mobile-drawer" id="navMobileDrawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+      <div class="nav-mobile-header">
+        <div class="nav-brand" onclick="App.goHome()" style="cursor:pointer">
+          <img src="assets/vexaro-logo.png" alt="Vexaro AI Logo" width="30" height="30" />
+          <div class="nav-name" style="font-size:17px">vex<span>aro</span> <span class="nav-sub-badge">AI</span></div>
+        </div>
+        <button class="nav-mobile-close" id="navMobileClose" onclick="VexaroMotion.closeMobileMenu()" aria-label="Close navigation">✕</button>
+      </div>
+      <div class="nav-mobile-links">
+        <a href="#how-it-works" class="mobile-nav-link">How It Works</a>
+        <a href="#interactive-demo" class="mobile-nav-link" style="color:var(--vx-400)">Interactive SDR Demo</a>
+        <a href="#careers-agent" class="mobile-nav-link" style="color:#10b981">Careers Agent (Job Finder &amp; Applier)</a>
+        <a href="#game-changers" class="mobile-nav-link">Core AI Engines</a>
+        <a href="#velocity-matrix" class="mobile-nav-link">5-Angle Personalization</a>
+        <a href="#features" class="mobile-nav-link">Features</a>
+        <a href="#pricing" class="mobile-nav-link">Pricing</a>
+        <a href="/services.html" class="mobile-nav-link">Services &amp; SLA</a>
+        <a href="#testimonials" class="mobile-nav-link">Case Studies</a>
+      </div>
+      <div class="nav-mobile-footer">
+        <button class="btn btn-primary btn-block btn-shimmer" onclick="App.handleLaunchCta('trial')">Start Trial Pro (₹19 / $1)</button>
+        <button class="btn btn-ghost btn-block" onclick="App.openAuthModal('signin')" style="margin-top:8px">Sign in</button>
+      </div>
+    </div>
+
+    <!-- ── PAGE 1: HERO SECTION ── -->
+    <section class="hero-100vh" id="heroSec">
+      <div>
+        <!-- Official Vexaro Brand Card -->
+        <div class="hero-brand-card">
+          <img src="assets/vexaro-logo.png" alt="Vexaro Signal-Driven AI Outreach" class="hero-brand-logo" width="44" height="44" decoding="async" />
+          <div class="hero-brand-meta">
+            <span class="hero-brand-tag">— SIGNAL-DRIVEN AI OUTREACH —</span>
+            <span class="hero-brand-subtag">Real signals. Real context. Real personalization. Real outreach.</span>
+          </div>
+        </div>
+
+        <div class="hero-badge-pill" style="display:inline-flex;align-items:center;gap:7px">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="var(--vx-400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          Autonomous Signal Intelligence Copilot
+        </div>
+
+        <h1 class="hero-headline">
+          Cold outreach that earns a reply.<br>
+          <span class="grad-word">Not ignored.</span>
+        </h1>
+
+        <p class="hero-sub-text">
+          Vexaro detects live buyer signals across target accounts and turns relevant context into personalized 1:1 outreach drafts that earn genuine replies.
+        </p>
+
+        <div class="hero-cta-group">
+          <button class="btn btn-primary btn-lg btn-magnetic btn-shimmer" id="btnHeroTrialCta" onclick="App.handleLaunchCta('trial')" style="display:inline-flex;align-items:center;gap:8px">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            <span id="btnHeroTrialCtaText">Start Trial Pro (₹19 / $1)</span>
+          </button>
+          <a href="#how-it-works" class="btn btn-ghost btn-lg" style="text-decoration:none;display:inline-flex;align-items:center;gap:8px">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+            See How It Works
+          </a>
+        </div>
+
+        <div class="hero-social-proof-bar">
+          <span>Engineered to reach decision makers at companies like</span>
+          <div class="hero-logos-inline">
+            <span>Stripe</span>
+            <span>Figma</span>
+            <span>Linear</span>
+            <span>Vercel</span>
+            <span>Notion</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT HALF: SEAMLESS INTEGRATION CARD + LIVE AI SDR COPILOT TERMINAL STAGE -->
+      <div class="hero-terminal-container" id="heroTerminalStage">
+        
+        <!-- Stage Switcher Tabs (Integration Mesh vs Live Copilot) -->
+        <div class="hero-stage-switcher-bar" role="tablist" aria-label="Hero Showcase View">
+          <button class="stage-switch-btn active" id="btnStageIntegration" onclick="App.switchHeroStage('integration')" role="tab" aria-selected="true">
+            <span class="stage-tab-icon">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span>Seamless Integrations</span>
+            <span class="stage-tab-badge">Live Mesh</span>
+          </button>
+          <button class="stage-switch-btn" id="btnStageCopilot" onclick="App.switchHeroStage('copilot')" role="tab" aria-selected="false">
+            <span class="stage-tab-icon">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none"><polygon points="12,2 21,7 12,12 3,7" stroke="currentColor" stroke-width="2"/><polygon points="3,7 12,12 12,22 3,17" stroke="currentColor" stroke-width="2"/><polygon points="12,12 21,7 21,17 12,22" stroke="currentColor" stroke-width="2"/></svg>
+            </span>
+            <span>AI SDR Copilot</span>
+          </button>
+        </div>
+
+        <!-- ── STAGE VIEW 1: SEAMLESS INTEGRATIONS CARD (CLEAN & PROFESSIONAL) ── -->
+        <div class="hero-stage-view active" id="heroStageIntegrationView">
+          <div class="vexaro-integration-card" id="integrations" data-beam="md" data-beam-variant="mono" data-beam-active="true">
+            <!-- Visual Container with Dot Grid and Flowing Laser Paths -->
+            <div class="integration-visual-container">
+              <!-- Radial Dot Grid Background -->
+              <div class="integration-dots-grid"></div>
+              <!-- Vertical Gradient Vignette Overlay -->
+              <div class="integration-vignette-overlay"></div>
+
+              <!-- Animated Traveling Laser Beams on SVG Circuit Paths (Clean Monochrome Grey & White) -->
+              <svg class="integration-svg-canvas" viewBox="0 0 564 410" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="vxLaserGrad1" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="transparent" />
+                    <stop offset="50%" stop-color="#ffffff" stop-opacity="0.85" />
+                    <stop offset="100%" stop-color="transparent" />
+                  </linearGradient>
+                  <linearGradient id="vxLaserGrad2" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="transparent" />
+                    <stop offset="50%" stop-color="#e2e8f0" stop-opacity="0.8" />
+                    <stop offset="100%" stop-color="transparent" />
+                  </linearGradient>
+                  <linearGradient id="vxLaserGrad3" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="transparent" />
+                    <stop offset="50%" stop-color="#cbd5e1" stop-opacity="0.75" />
+                    <stop offset="100%" stop-color="transparent" />
+                  </linearGradient>
+                  <linearGradient id="vxLaserGrad4" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="transparent" />
+                    <stop offset="50%" stop-color="#ffffff" stop-opacity="0.9" />
+                    <stop offset="100%" stop-color="transparent" />
+                  </linearGradient>
+                  <linearGradient id="vxLaserGrad5" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="transparent" />
+                    <stop offset="50%" stop-color="#94a3b8" stop-opacity="0.7" />
+                    <stop offset="100%" stop-color="transparent" />
+                  </linearGradient>
+                  <linearGradient id="vxLaserGrad6" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="transparent" />
+                    <stop offset="50%" stop-color="#e2e8f0" stop-opacity="0.85" />
+                    <stop offset="100%" stop-color="transparent" />
+                  </linearGradient>
+                </defs>
+
+                <!-- Static Circuit Tracks -->
+                <path d="M 270 205 V 105 Q 270 90 255 90 H 110" stroke="rgba(255,255,255,0.12)" stroke-width="1.2" fill="none" />
+                <path d="M 294 205 V 85 Q 294 70 309 70 H 360" stroke="rgba(255,255,255,0.12)" stroke-width="1.2" fill="none" />
+                <path d="M 250 205 H 160" stroke="rgba(255,255,255,0.12)" stroke-width="1.2" fill="none" />
+                <path d="M 314 205 H 480" stroke="rgba(255,255,255,0.12)" stroke-width="1.2" fill="none" />
+                <path d="M 282 205 V 360" stroke="rgba(255,255,255,0.12)" stroke-width="1.2" fill="none" />
+                <path d="M 314 215 V 325 Q 314 340 329 340 H 460" stroke="rgba(255,255,255,0.12)" stroke-width="1.2" fill="none" />
+
+                <!-- Flowing Pulsed Laser Beams -->
+                <path d="M 270 205 V 105 Q 270 90 255 90 H 110" stroke="url(#vxLaserGrad1)" stroke-width="2.2" fill="none" class="integration-laser-beam beam-delay-1" />
+                <path d="M 294 205 V 85 Q 294 70 309 70 H 360" stroke="url(#vxLaserGrad2)" stroke-width="2.2" fill="none" class="integration-laser-beam beam-delay-2" />
+                <path d="M 250 205 H 160" stroke="url(#vxLaserGrad3)" stroke-width="2.2" fill="none" class="integration-laser-beam beam-delay-3" />
+                <path d="M 314 205 H 480" stroke="url(#vxLaserGrad4)" stroke-width="2.2" fill="none" class="integration-laser-beam beam-delay-4" />
+                <path d="M 282 205 V 360" stroke="url(#vxLaserGrad5)" stroke-width="2.2" fill="none" class="integration-laser-beam beam-delay-5" />
+                <path d="M 314 215 V 325 Q 314 340 329 340 H 460" stroke="url(#vxLaserGrad6)" stroke-width="2.2" fill="none" class="integration-laser-beam beam-delay-6" />
+              </svg>
+
+              <!-- Central Vexaro AI Nucleus -->
+              <div class="integration-center-node">
+                <div class="center-pulse-halo"></div>
+                <div class="center-nucleus-box">
+                  <div class="nucleus-inner-border" style="display:flex;align-items:center;justify-content:center">
+                    <img src="assets/vexaro-logo.png" alt="Vexaro Core" width="28" height="28" style="object-fit:contain" />
+                  </div>
+                </div>
+                <div class="center-node-tag">Vexaro Core</div>
+              </div>
+
+              <!-- 6 Peripheral Nodes (Themed for Vexaro AI Outbound Ecosystem) -->
+              <!-- 1. Top-Left: HubSpot CRM (110, 90) -->
+              <div class="integration-node-card node-pos-1" title="HubSpot Deals &amp; Contacts Sync">
+                <div class="node-icon-wrap">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+                    <path d="M17.5 7.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM17.5 16.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z" fill="#FF7A59"/>
+                    <path d="M7 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" fill="#FF7A59"/>
+                    <path d="M6.5 12h8.5M15 5v14" stroke="#FF7A59" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <span class="node-badge-chip">HubSpot</span>
+              </div>
+
+              <!-- 2. Top-Right: Salesforce (360, 70) -->
+              <div class="integration-node-card node-pos-2" title="Salesforce Enterprise Pipeline">
+                <div class="node-icon-wrap">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+                    <path d="M19.5 9.5a4.5 4.5 0 0 0-8.3-2.1 3.5 3.5 0 0 0-5.7 3.6 4 4 0 0 0 .5 7.9h13a4 4 0 0 0 .5-9.4z" fill="#00A1E0" fill-opacity="0.2" stroke="#00A1E0" stroke-width="1.8" stroke-linejoin="round"/>
+                    <circle cx="10" cy="13" r="1.5" fill="#00A1E0"/>
+                    <circle cx="14" cy="12" r="1.5" fill="#00A1E0"/>
+                  </svg>
+                </div>
+                <span class="node-badge-chip">Salesforce</span>
+              </div>
+
+              <!-- 3. Mid-Left: Instantly.ai (160, 205) -->
+              <div class="integration-node-card node-pos-3" title="Instantly.ai Dispatch &amp; Warmup">
+                <div class="node-icon-wrap">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+                    <rect x="3" y="4" width="18" height="16" rx="4" fill="#6366F1" fill-opacity="0.15" stroke="#6366F1" stroke-width="1.8"/>
+                    <path d="M7 12l3.5 3.5L17 9" stroke="#6366F1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <span class="node-badge-chip">Instantly</span>
+              </div>
+
+              <!-- 4. Mid-Right: Smartlead.ai (480, 205) -->
+              <div class="integration-node-card node-pos-4" title="Smartlead Mailbox Rotation">
+                <div class="node-icon-wrap">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+                    <circle cx="12" cy="12" r="9" stroke="#F97316" stroke-width="1.8" fill="#F97316" fill-opacity="0.15"/>
+                    <path d="M12 6v6l4 2" stroke="#F97316" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <span class="node-badge-chip">Smartlead</span>
+              </div>
+
+              <!-- 5. Bottom-Center: Slack (282, 360) -->
+              <div class="integration-node-card node-pos-5" title="Slack Real-Time Reply Alerts">
+                <div class="node-icon-wrap">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+                    <path d="M5.5 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM10 5.5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM14 5.5a2 2 0 1 0 4 0 2 2 0 0 0-4 0zM18.5 10a2 2 0 1 1 0-4 2 2 0 0 1 0 4zM18.5 14a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM14 18.5a2 2 0 1 1 4 0 2 2 0 0 1-4 0zM10 18.5a2 2 0 1 0-4 0 2 2 0 0 0 4 0zM5.5 14a2 2 0 1 1 0 4 2 2 0 0 1 0-4z" fill="#E01E5A"/>
+                    <path d="M7 10h10M7 14h10M10 7v10M14 7v10" stroke="#ECB22E" stroke-width="1.6" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <span class="node-badge-chip">Slack</span>
+              </div>
+
+              <!-- 6. Bottom-Right: Claude 3.5 & DeepReason (460, 340) -->
+              <div class="integration-node-card node-pos-6" title="Claude 3.5 &amp; DeepReason™ Engine">
+                <div class="node-icon-wrap">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+                    <path d="M12 2L4 7v10l8 5 8-5V7l-8-5z" stroke="#D97706" stroke-width="1.8" fill="#D97706" fill-opacity="0.15"/>
+                    <path d="M12 7l4 3-4 3-4-3 4-3zM12 13v4M8 10.5v3M16 10.5v3" stroke="#D97706" stroke-width="1.6" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <span class="node-badge-chip">Claude / AI</span>
+              </div>
+            </div>
+
+            <!-- Card Content Details with Call to Action -->
+            <div class="integration-card-content">
+              <div class="integration-card-text">
+                <div class="integration-card-pill">
+                  <span class="pulse-emerald-dot"></span>
+                  <span>Unified Sales Ecosystem</span>
+                </div>
+                <h3 class="integration-card-title">Seamless Outbound &amp; CRM Integrations</h3>
+                <p class="integration-card-desc">
+                  Connect your favorite tools and keep your outbound workflows unified. Vexaro synchronizes pipeline deals, mailboxes, and live intent signals across platforms without switching tabs.
+                </p>
+              </div>
+              <div class="integration-card-footer-row">
+                <a href="#integrations" class="integration-primary-btn" onclick="if(window.App &amp;&amp; App.openIntegrationDrawer) { App.openIntegrationDrawer(); } else { window.location.href='#integrations'; } return false;">
+                  <span>Connect Outbound Stack</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                <div class="integration-stats-pill">
+                  <span class="status-live-ring"></span>
+                  <span>Multi-Source Connectors</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── STAGE VIEW 2: LIVE AI SDR COPILOT TERMINAL ── -->
+        <div class="hero-stage-view" id="heroStageCopilotView">
+          <div class="hero-terminal-card" data-beam="md" data-beam-variant="mono" data-beam-active="true">
+          
+          <!-- Terminal Header Bar -->
+          <div class="terminal-header-bar">
+            <div class="terminal-window-dots">
+              <span class="window-dot red"></span>
+              <span class="window-dot yellow"></span>
+              <span class="window-dot green"></span>
+            </div>
+            <div class="terminal-engine-badge">
+              <span class="copilot-orb-wrap" style="margin-right:6px">
+                <canvas id="heroTerminalOrb" class="thinking-orb-badge-canvas" data-thinking-orb="weaving" data-orb-size="20"></canvas>
+              </span>
+              <span>Vexaro DeepReason™ SDR Copilot</span>
+            </div>
+            <div class="terminal-score-pill">
+              <span class="score-dot"></span>
+              <span>Signal Alignment: High (Evidence-Backed)</span>
+            </div>
+          </div>
+
+          <!-- Prospect Context Bar -->
+          <div class="terminal-prospect-row">
+            <div class="terminal-prospect-meta">
+              <div class="terminal-avatar" id="heroLeadAvatar">SC</div>
+              <div>
+                <div class="terminal-prospect-name" id="heroLeadNameTitle">Sarah Chen <span class="terminal-company-tag" id="heroLeadCompany">VP of CS @ Stripe</span> <span class="badge badge-neutral" style="font-size:9px;margin-left:6px">Sample Scenario</span></div>
+                <div class="terminal-signal-context">
+                  <span class="signal-tag-chip">Sample Trigger:</span> <span id="heroLeadSignal">Series B expansion + posted about 40% churn reduction bottleneck</span>
+                </div>
+              </div>
+            </div>
+            <div class="terminal-prospect-tabs">
+              <button class="terminal-lead-btn active" id="tabLeadSarah" onclick="App.switchHeroLead('sarah')">Sarah (Stripe)</button>
+              <button class="terminal-lead-btn" id="tabLeadMarcus" onclick="App.switchHeroLead('marcus')">Marcus (Notion)</button>
+              <button class="terminal-lead-btn" id="tabLeadElena" onclick="App.switchHeroLead('elena')">Elena (Figma)</button>
+            </div>
+          </div>
+
+          <!-- Copywriting Angle Selector -->
+          <div class="terminal-angles-bar">
+            <span class="angles-label">Copy Angle:</span>
+            <div class="angles-pills-wrap">
+              <button class="angle-pill-btn active" id="heroAngle0" onclick="App.switchHeroAngle(0)">1. Grounded Pain Point</button>
+              <button class="angle-pill-btn" id="heroAngle1" onclick="App.switchHeroAngle(1)">2. Peer Proof &amp; Metrics</button>
+              <button class="angle-pill-btn" id="heroAngle2" onclick="App.switchHeroAngle(2)">3. Direct ROI Trigger</button>
+            </div>
+          </div>
+
+          <!-- Live Generated Email View -->
+          <div class="terminal-email-preview">
+            <div class="terminal-subject-line">
+              <span class="subject-label">Subject:</span>
+              <strong id="heroSubjectText">quick question re: CS scaling post-Series B</strong>
+            </div>
+            <div class="terminal-body-box" id="heroEmailBody">Sarah, saw your recent note on scaling customer success while keeping net churn under 1.2% after Stripe's latest platform expansion.
+
+Most CS leaders at this velocity struggle with rep capacity before hiring catches up. We engineered Vexaro to turn live prospect context into warm 1:1 outbound in under 90 seconds.
+
+Open to a brief 7-minute look at how we helped similar teams double positive reply rates?</div>
+          </div>
+
+          <!-- Direct 1-Click Dispatch Footer with Official Logos -->
+          <div class="terminal-dispatch-footer">
+            <div class="dispatch-group-label">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--vx-400)"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              <span>1-Click Dispatch:</span>
+            </div>
+            <div class="dispatch-buttons-cluster">
+              <!-- Official Gmail Dispatch Button -->
+              <button class="brand-dispatch-btn brand-btn-gmail" onclick="App.dispatchHero('gmail')" title="Open pre-filled in Gmail Web Compose">
+                <span class="brand-logo-wrap">
+                  <svg viewBox="0 0 24 24" class="brand-icon-svg" fill="none">
+                    <path d="M20.5 4h-17A1.5 1.5 0 002 5.5v13A1.5 1.5 0 003.5 20h17a1.5 1.5 0 001.5-1.5v-13A1.5 1.5 0 0020.5 4z" fill="#ffffff" opacity="0.08"/>
+                    <path d="M2 6.5v11c0 .83.67 1.5 1.5 1.5H6V10L2 6.5z" fill="#4285F4"/>
+                    <path d="M22 6.5v11c0 .83-.67 1.5-1.5 1.5H18V10l4-3.5z" fill="#34A853"/>
+                    <path d="M18 6.5L12 11 6 6.5V5.5c0-.83.67-1.5 1.5-1.5h9c.83 0 1.5.67 1.5 1.5v1z" fill="#EA4335"/>
+                    <path d="M6 10v9h12v-9l-6 4.5L6 10z" fill="#FBBC05"/>
+                    <path d="M18 10l4-3.5L18 6.5V10z" fill="#C5221F"/>
+                    <path d="M6 10l-4-3.5L6 6.5V10z" fill="#1A73E8"/>
+                  </svg>
+                </span>
+                <span>Gmail</span>
+              </button>
+
+              <!-- Official Outlook Dispatch Button -->
+              <button class="brand-dispatch-btn brand-btn-outlook" onclick="App.dispatchHero('outlook')" title="Open pre-filled in Outlook Web">
+                <span class="brand-logo-wrap">
+                  <svg viewBox="0 0 24 24" class="brand-icon-svg" fill="none">
+                    <rect x="2" y="4" width="13" height="16" rx="2.5" fill="#0078D4"/>
+                    <path d="M14 6.5L21.2 10.6C21.7 10.9 22 11.4 22 12V16.5C22 17.9 20.9 19 19.5 19H14V6.5Z" fill="#106EBE"/>
+                    <path d="M14 12.5L21.4 8.2C21.1 7.2 20.2 6.5 19 6.5H14V12.5Z" fill="#2899F5"/>
+                    <ellipse cx="8.5" cy="12" rx="3.5" ry="4.5" fill="#ffffff"/>
+                    <ellipse cx="8.5" cy="12" rx="1.8" ry="2.6" fill="#0078D4"/>
+                  </svg>
+                </span>
+                <span>Outlook</span>
+              </button>
+
+              <!-- Official LinkedIn Dispatch Button -->
+              <button class="brand-dispatch-btn brand-btn-linkedin" onclick="App.dispatchHero('linkedin')" title="Open LinkedIn &amp; copy message note">
+                <span class="brand-logo-wrap">
+                  <svg viewBox="0 0 24 24" class="brand-icon-svg" fill="none">
+                    <rect x="2" y="2" width="20" height="20" rx="4.5" fill="#0A66C2"/>
+                    <path d="M7.1 9H4.6V17.5H7.1V9Z" fill="#ffffff"/>
+                    <ellipse cx="5.85" cy="6.25" rx="1.35" ry="1.35" fill="#ffffff"/>
+                    <path d="M11.1 9H8.6V17.5H11.1V13.1C11.1 10.7 14.2 10.5 14.2 13.1V17.5H16.7V12.1C16.7 8 12.2 8.1 11.1 10.1V9Z" fill="#ffffff"/>
+                  </svg>
+                </span>
+                <span>LinkedIn</span>
+              </button>
+
+              <!-- Copy Draft -->
+              <button class="brand-dispatch-btn brand-btn-ghost" onclick="App.copyHeroDraft()" title="Copy draft to clipboard">
+                <span class="brand-logo-wrap">
+                  <svg viewBox="0 0 24 24" class="brand-icon-svg" fill="none"><rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="1.6"/></svg>
+                </span>
+                <span>Copy</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SCROLLING INSIGHTS TICKER STRIP ── -->
+  <div class="ticker-strip-40" style="margin-top:40px">
+    <div class="ticker-strip-track">
+        <span class="ticker-strip-item"><span class="ticker-pro-icon" style="display:inline-flex;align-items:center;margin-right:6px;color:var(--vx-400)"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg></span>5%+ Reply-Rate Target (vs 1.8% Avg)</span>
+        <span class="ticker-strip-item"><span class="ticker-pro-icon" style="display:inline-flex;align-items:center;margin-right:6px;color:#10b981"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg></span>1-Click Gmail & Outlook Dispatch</span>
+        <span class="ticker-strip-item"><span class="ticker-pro-icon" style="display:inline-flex;align-items:center;margin-right:6px;color:#0a66c2"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M8 11v5M8 8v.01M12 16v-3a2 2 0 0 1 4 0v3M12 11v5"/></svg></span>LinkedIn Outreach Note</span>
+        <span class="ticker-strip-item"><span class="ticker-pro-icon" style="display:inline-flex;align-items:center;margin-right:6px;color:var(--vx-400)"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg></span>Vexaro DeepReason™ Engine</span>
+        <span class="ticker-strip-item"><span class="ticker-pro-icon" style="display:inline-flex;align-items:center;margin-right:6px;color:#a855f7"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 1 10 10"/><path d="M12 6a6 6 0 0 1 6 6"/><circle cx="12" cy="12" r="2"/></svg></span>Real-Time Signal Intelligence</span>
+        <span class="ticker-strip-item"><span class="ticker-pro-icon" style="display:inline-flex;align-items:center;margin-right:6px;color:var(--vx-400)"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>&lt;90s Research Velocity</span>
+        <span class="ticker-strip-item"><span class="ticker-pro-icon" style="display:inline-flex;align-items:center;margin-right:6px;color:#06b6d4"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>5 Conversion Copy Angles</span>
+        <span class="ticker-strip-item"><span class="ticker-pro-icon" style="display:inline-flex;align-items:center;margin-right:6px;color:#10b981"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></span>TLS &amp; OAuth Security</span>
+        <span class="ticker-strip-item"><span class="ticker-pro-icon" style="display:inline-flex;align-items:center;margin-right:6px;color:var(--vx-400)"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>ICP Fit Scoring</span>
+        <span class="ticker-strip-item"><span class="ticker-pro-icon" style="display:inline-flex;align-items:center;margin-right:6px;color:#06b6d4"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>Zero Spam Word Detection</span>
+        <span class="ticker-strip-item"><span class="ticker-pro-icon" style="display:inline-flex;align-items:center;margin-right:6px;color:#a855f7"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>Multi-Channel Outreach</span>
+      </div>
+    </div>
+
+    <!-- ── PAGE 2: HOW IT WORKS ── -->
+    <section class="section-how-it-works" id="how-it-works">
+      <div style="text-align:center">
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--vx-500)">PRECISION ENGINE</div>
+        <h2 style="font-family:var(--font-display);font-size:var(--text-3xl);margin-top:6px;display:inline-flex;align-items:center;justify-content:center;gap:8px">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="var(--vx-400)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          How Vexaro Turns Signals into Warm Replies
+        </h2>
+      </div>
+
+      <div class="steps-connector-grid">
+        <!-- Step 1 -->
+        <div class="step-card tilt-card">
+          <div class="card-shine"></div>
+          <div class="step-icon-circle" style="display:flex;align-items:center;justify-content:center;background:rgba(255,106,0,0.1);border:1px solid rgba(255,106,0,0.25)">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="var(--vx-400)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="22" y1="12" x2="18" y2="12"/>
+              <line x1="6" y1="12" x2="2" y2="12"/>
+              <line x1="12" y1="6" x2="12" y2="2"/>
+              <line x1="12" y1="22" x2="12" y2="18"/>
+            </svg>
+          </div>
+          <div style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--vx-500);margin-bottom:6px">STEP 01</div>
+          <h3 style="font-family:var(--font-heading);font-size:var(--text-lg);font-weight:600;margin-bottom:8px">Prospect &amp; Trigger Detection</h3>
+          <p style="font-size:var(--text-sm);color:var(--text-80);line-height:1.6">Add or sync prospects. Vexaro identifies why you should contact this person right now based on live public signals.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-card tilt-card">
+          <div class="card-shine"></div>
+          <div class="step-icon-circle" style="display:flex;align-items:center;justify-content:center;background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.25)">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#06b6d4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="4" y1="21" x2="4" y2="14"/>
+              <line x1="4" y1="10" x2="4" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="12"/>
+              <line x1="12" y1="8" x2="12" y2="3"/>
+              <line x1="20" y1="21" x2="20" y2="16"/>
+              <line x1="20" y1="12" x2="20" y2="3"/>
+              <lin

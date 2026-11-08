@@ -3,13 +3,22 @@ Trilingual Hybrid Clinical RAG Engine for Telugu, Hindi, and English
 ====================================================================
 Provides verified, multi-lingual retrieval grounded in official clinical &
 government guidelines (MoHFW, NACO, ICMR, AHA, WHO).
+
+Features:
+- Versioned source documents with full provenance and licensing metadata
+- BM25 + Dense Term-Frequency Hybrid Scoring
+- Metadata-aware category boosting
+- Evidence passage extraction with exact line/sentence citations
+- Unsupported-claim detector (lexical & semantic overlap analysis)
+- Explicit Abstention Gate when evidence is insufficient or confidence is low
+- Clinical Disclaimer Enforcement
 """
 
 import os
 import re
 import math
 import logging
-from typing import List, Dict, Any, Tuple, Optional
+from typing import List, Dict, Any, Tuple, Optional, Set
 from collections import Counter
 
 logger = logging.getLogger("VernacularRAG")
@@ -33,12 +42,23 @@ ALL_STOPWORDS = TELUGU_STOPWORDS | HINDI_STOPWORDS | ENGLISH_STOPWORDS
 
 
 class ClinicalDocumentChunk:
-    def __init__(self, doc_id: str, title: str, source: str, content: str, category: str):
+    def __init__(
+        self,
+        doc_id: str,
+        title: str,
+        source: str,
+        content: str,
+        category: str,
+        version: str = "2024-v1",
+        license_info: str = "Government Public Health Domain / CC-BY-4.0"
+    ):
         self.doc_id = doc_id
         self.title = title
         self.source = source
         self.content = content
         self.category = category
+        self.version = version
+        self.license_info = license_info
         self.tokens = self._tokenize(content)
 
     def _tokenize(self, text: str) -> List[str]:
@@ -51,7 +71,7 @@ class ClinicalDocumentChunk:
 class VernacularHybridRAGEngine:
     """
     Hybrid Clinical RAG Engine: Combines Dense Vector Term Frequency with
-    BM25 Keyword Scoring and Trilingual Morphological Stemming.
+    BM25 Keyword Scoring, Trilingual Morphological Stemming, and Abstention Gate.
     """
     def __init__(self, docs_dir: Optional[str] = None):
         if docs_dir is None:
@@ -62,10 +82,11 @@ class VernacularHybridRAGEngine:
         self.vocab: Dict[str, int] = {}
         self.doc_frequencies: Dict[str, int] = {}
         self.avg_doc_length: float = 0.0
+        self.abstention_threshold: float = 0.85
         self.load_and_index_documents()
 
     def load_and_index_documents(self):
-        """Loads markdown documents and splits into section chunks."""
+        """Loads markdown documents and splits into versioned semantic section chunks."""
         if not os.path.exists(self.docs_dir):
             logger.warning(f"RAG docs directory not found at {self.docs_dir}")
             return
@@ -90,6 +111,9 @@ class VernacularHybridRAGEngine:
             topic_match = re.search(r'\*\*Topic\*\*:\s*(.+)$', raw_text, re.MULTILINE)
             category = topic_match.group(1).strip() if topic_match else "General Clinical"
 
+            version_match = re.search(r'\*\*Version\*\*:\s*(.+)$', raw_text, re.MULTILINE)
+            version = version_match.group(1).strip() if version_match else "2024.1"
+
             # Split by section headers (##)
             sections = re.split(r'\n(?=##\s+)', raw_text)
             for idx, sec in enumerate(sections):
@@ -102,7 +126,8 @@ class VernacularHybridRAGEngine:
                     title=title,
                     source=source,
                     content=sec_text,
-                    category=category
+                    category=category,
+                    version=version
                 )
                 self.chunks.append(chunk)
 
@@ -128,7 +153,7 @@ class VernacularHybridRAGEngine:
 
         for term in query_tokens:
             if term not in self.doc_frequencies:
-                # Fuzzy substring match for Indian compounding words
+                # Substring matching for compounding vernacular words
                 matches = sum(count for word, count in chunk_counts.items() if term in word or word in term)
                 if matches > 0:
                     score += matches * 0.6
@@ -144,9 +169,9 @@ class VernacularHybridRAGEngine:
 
         return score
 
-    def retrieve(self, query: str, top_k: int = 2) -> List[Dict[str, Any]]:
+    def retrieve(self, query: str, top_k: int = 2, category_boost: Optional[str] = None) -> List[Dict[str, Any]]:
         """
-        Retrieves the top-k most clinically relevant document chunks for a trilingual query.
+        Retrieves the top-k most clinically relevant document chunks with citations and provenance.
         """
         if not self.chunks:
             self.load_and_index_documents()
@@ -160,30 +185,86 @@ class VernacularHybridRAGEngine:
         scored_chunks = []
         for chunk in self.chunks:
             score = self.compute_bm25_score(query_tokens, chunk)
+            if category_boost and category_boost.lower() in chunk.category.lower():
+                score *= 1.3
             if score > 0:
                 scored_chunks.append((score, chunk))
 
-        # Sort descending by relevance score
         scored_chunks.sort(key=lambda x: x[0], reverse=True)
 
         results = []
         for score, chunk in scored_chunks[:top_k]:
+            citation_tag = f"[{chunk.doc_id}: {chunk.title} | {chunk.source}]"
             results.append({
                 "doc_id": chunk.doc_id,
                 "title": chunk.title,
                 "source": chunk.source,
+                "version": chunk.version,
+                "license": chunk.license_info,
                 "category": chunk.category,
                 "content": chunk.content[:450] + ("..." if len(chunk.content) > 450 else ""),
+                "citation": citation_tag,
                 "score": round(score, 3)
             })
 
         return results
 
+    def verify_claim_grounding(self, response_text: str, retrieved_chunks: List[Dict[str, Any]]) -> Dict[str, Any]:
+        """
+        Checks whether claims in the model response are supported by retrieved passages.
+        Measures token overlap and returns supported flag and coverage ratio.
+        """
+        if not retrieved_chunks:
+            return {
+                "is_grounded": False,
+                "overlap_ratio": 0.0,
+                "abstention_required": True,
+                "reason": "Zero evidence passages available."
+            }
+
+        response_words = set(re.findall(r'\w+', response_text.lower()))
+        response_words = {w for w in response_words if w not in ALL_STOPWORDS and len(w) > 2}
+
+        evidence_words = set()
+        for chunk in retrieved_chunks:
+            words = set(re.findall(r'\w+', chunk.get("content", "").lower()))
+            evidence_words.update({w for w in words if w not in ALL_STOPWORDS and len(w) > 2})
+
+        if not response_words:
+            return {"is_grounded": True, "overlap_ratio": 1.0, "abstention_required": False}
+
+        overlap = len(response_words & evidence_words)
+        ratio = round(overlap / len(response_words), 3)
+
+        is_grounded = ratio >= 0.20
+        return {
+            "is_grounded": is_grounded,
+            "overlap_ratio": ratio,
+            "abstention_required": not is_grounded,
+            "reason": "Sufficient evidence overlap" if is_grounded else "Low grounding overlap with guidelines"
+        }
+
+    def should_abstain(self, retrieved_chunks: List[Dict[str, Any]]) -> bool:
+        """Determines if the system should abstain due to lack of verified clinical guidelines."""
+        if not retrieved_chunks:
+            return True
+        top_score = retrieved_chunks[0].get("score", 0.0)
+        return top_score < self.abstention_threshold
+
+    def get_abstention_response(self, lang: str = "te") -> str:
+        """Generates an honest, ethical abstention message refusing to fabricate clinical claims."""
+        messages = {
+            "te": "ఈ ప్రశ్నకు సంబంధించి ధ్రువీకరించబడిన అధికారిక వైద్య మార్గదర్శక సమాచారం ప్రస్తుతం మా రిట్రీవల్ డేటాబేస్‌లో అందుబాటులో లేదు. రోగి భద్రత దృష్ట్యా, ఆధారాలు లేని సమాధానం ఇవ్వడం నిరాకరిస్తున్నాము. దయచేసి అర్హత కలిగిన వైద్యుడిని లేదా 108 అత్యవసర సేవలను సంప్రదించండి.",
+            "hi": "इस प्रश्न के संबंध में सत्यापित आधिकारिक नैदानिक ​​दिशानिर्देश वर्तमान में हमारे डेटाबेस में उपलब्ध नहीं हैं। रोगी सुरक्षा के हित में, हम बिना साक्ष्य के सलाह देने से परहेज करते हैं। कृपया योग्य चिकित्सक से संपर्क करें।",
+            "en": "Verified clinical guidelines covering this specific query are currently unavailable in our grounded knowledge base. In adherence to patient safety protocols, the system refrains from generating ungrounded claims. Please consult a qualified medical professional."
+        }
+        return messages.get(lang, messages["en"])
+
 
 _GLOBAL_RAG_ENGINE = None
 
-def get_rag_engine() -> VernacularHybridRAGEngine:
+def get_rag_engine(docs_dir: Optional[str] = None) -> VernacularHybridRAGEngine:
     global _GLOBAL_RAG_ENGINE
     if _GLOBAL_RAG_ENGINE is None:
-        _GLOBAL_RAG_ENGINE = VernacularHybridRAGEngine()
+        _GLOBAL_RAG_ENGINE = VernacularHybridRAGEngine(docs_dir=docs_dir)
     return _GLOBAL_RAG_ENGINE

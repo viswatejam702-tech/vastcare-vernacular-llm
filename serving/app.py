@@ -46,6 +46,22 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.middleware("http")
+async def add_custom_headers(request: Request, call_next):
+    response = await call_next(request)
+    response.headers["X-Model-Version"] = "2.5.0-PROD"
+    response.headers["X-Platform"] = "VastCare-Vernacular"
+    return response
+
+@app.get("/health")
+@app.get("/health/live")
+async def health_live():
+    return {"status": "ok", "service": "vastcare-vernacular-llm", "version": "2.5.0-PROD"}
+
+@app.get("/health/ready")
+async def health_ready():
+    return {"status": "ready", "rag_chunks_loaded": len(rag_engine.chunks), "version": "2.5.0-PROD"}
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WEB_DIR = os.path.join(BASE_DIR, "web")
 EVAL_RESULTS_PATH = os.path.join(BASE_DIR, "eval", "eval_results.json")
@@ -459,7 +475,7 @@ async def get_metrics():
             "ram_reduction_pct": 71.5,
             "cpu_tok_per_sec": 38.6
         },
-        "hardware_profiles": benchmarks["hardware_profiles"]
+        "hardware_profiles": benchmarks.get("hardware_profiles", benchmarks.get("precision_benchmarks", {}))
     }
 
 

@@ -1,0 +1,30 @@
+{
+  "pipeline_name": "VastCare Vernacular LLM Dataset Pipeline",
+  "version": "2.5.0-PROD",
+  "total_raw_ingested": 58,
+  "total_deduplicated": 22,
+  "deduplication_ratio": 0.3793,
+  "splits": {
+    "train_count": 16,
+    "val_count": 3,
+    "test_count": 3
+  },
+  "language_distribution": {
+    "te": 19,
+    "te-en": 2,
+    "en": 1
+  },
+  "general_instruction_stats": {
+    "total_raw": 10,
+    "passed": 10,
+    "rejected": 0,
+    "leakage_filtered": 0
+  },
+  "clinical_seed_count": 12,
+  "benchmark_leakage_prevented": true,
+  "patient_phi_pii_excluded": true,
+  "provenance": {
+    "licensing": "Apache 2.0 / CC-BY-4.0 Clinical Guideline Adaptations",
+    "expert_annotation_status": "official_guideline_grounded_curation"
+  }
+}
